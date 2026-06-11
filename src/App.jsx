@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile/ProfilePage";
 import CreateRoommateAdPage from "./pages/Roommate/CreateRoommatePage";
 import CreatePropertyPage from "./pages/Property/CreatePropertyPage";
@@ -16,7 +15,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/create-roommate-ad" element={<CreateRoommateAdPage />} />
         <Route path="/create-property" element={<CreatePropertyPage />} />
