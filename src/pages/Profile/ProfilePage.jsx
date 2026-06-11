@@ -24,7 +24,9 @@ export default function ProfilePage() {
       "کتابخوان",
       "ورزشکار",
       "اجتماعی"
-    ]
+    ],
+    phoneVerified: true,
+    emailVerified: false,
   });
 
   return (
@@ -49,9 +51,11 @@ export default function ProfilePage() {
 
         <HousingSection />
 
-        <BadgesSection />
+        <BadgesSection 
+          user={user}
+        />
 
-        <PremiumCard />
+        {/* <PremiumCard /> */}
 
         <PsychologySection />
 

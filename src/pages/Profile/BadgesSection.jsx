@@ -1,10 +1,12 @@
 import {
   Mail,
-  Smartphone,
-  ShieldCheck
+  Smartphone
 } from "lucide-react";
 
-export default function BadgesSection() {
+export default function BadgesSection({
+  user
+}) {
+
   return (
     <div className="bg-white rounded-[35px] p-5">
 
@@ -12,33 +14,64 @@ export default function BadgesSection() {
         نشان‌ها
       </h2>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 gap-4">
 
-        <div className="bg-green-50 rounded-3xl p-4 text-center">
+        {/* تلفن */}
+
+        <div
+          className={`
+            rounded-3xl
+            p-4
+            text-center
+
+            ${
+              user.phoneVerified
+                ? "bg-green-50"
+                : "bg-red-50"
+            }
+          `}
+        >
           <Smartphone
-            className="mx-auto text-green-600"
+            className={`mx-auto ${
+              user.phoneVerified
+                ? "text-green-600"
+                : "text-red-600"
+            }`}
           />
+
           <p className="mt-2 text-sm">
             تلفن همراه
           </p>
+
         </div>
 
-        <div className="bg-green-50 rounded-3xl p-4 text-center">
+        {/* ایمیل */}
+
+        <div
+          className={`
+            rounded-3xl
+            p-4
+            text-center
+
+            ${
+              user.emailVerified
+                ? "bg-green-50"
+                : "bg-red-50"
+            }
+          `}
+        >
           <Mail
-            className="mx-auto text-green-600"
+            className={`mx-auto ${
+              user.emailVerified
+                ? "text-green-600"
+                : "text-red-600"
+            }`}
           />
+
           <p className="mt-2 text-sm">
             ایمیل
           </p>
-        </div>
 
-        <div className="bg-blue-50 rounded-3xl p-4 text-center">
-          <ShieldCheck
-            className="mx-auto text-blue-600"
-          />
-          <p className="mt-2 text-sm">
-            احراز هویت
-          </p>
         </div>
 
       </div>
