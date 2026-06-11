@@ -11,27 +11,22 @@ export default function ProfilePage() {
 
   const [user, setUser] = useState({
     fullName: "زهرا محمدی",
-
+    gender: "female",
     age: 30,
-
-    profileImage:
-      "https://i.pravatar.cc/300",
-
+    profileImage: null,
     about:
       "دانشجوی مهندسی نرم افزار و به دنبال هم‌خانه‌ای منظم و اجتماعی.",
-
     rentBudget: "۸ میلیون",
-
     depositBudget: "۳۰۰ میلیون",
-
     deadline: "۳۰ روز",
-
     tags: [
       "برونگرا",
       "کتابخوان",
       "ورزشکار",
       "اجتماعی"
-    ]
+    ],
+    phoneVerified: true,
+    emailVerified: false,
   });
 
   return (
@@ -56,9 +51,11 @@ export default function ProfilePage() {
 
         <HousingSection />
 
-        <BadgesSection />
+        <BadgesSection 
+          user={user}
+        />
 
-        <PremiumCard />
+        {/* <PremiumCard /> */}
 
         <PsychologySection />
 

@@ -5,8 +5,10 @@ import {
   Archive,
   Users
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function HousingSection() {
+  const navigate = useNavigate();
   return (
     <div className="bg-white rounded-[35px] p-6 shadow-sm">
 
@@ -31,7 +33,21 @@ export default function HousingSection() {
             دنبال هم‌خونه می‌گردم
           </h3>
 
-          <button className="mt-4 text-indigo-500 font-bold">
+          <button
+            onClick={() =>
+              navigate("/create-roommate-ad")
+            }
+            className="
+              mt-4
+              text-indigo-500
+              font-bold
+              px-4
+              py-2
+              rounded-xl
+              transition
+              hover:bg-indigo-50
+            "
+          >
             ثبت آگهی جدید
           </button>
         </div>
@@ -49,7 +65,21 @@ export default function HousingSection() {
             می‌خواهم اجاره بدهم
           </h3>
 
-          <button className="mt-4 text-sky-500 font-bold">
+          <button
+            onClick={() =>
+              navigate("/create-property")
+            }
+            className="
+              mt-4
+              text-sky-500
+              font-bold
+              px-4
+              py-2
+              rounded-xl
+              transition
+              hover:bg-sky-50
+            "
+          >
             ثبت ملک جدید
           </button>
         </div>
@@ -71,6 +101,9 @@ export default function HousingSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
           <button
+            onClick={() =>
+              navigate("/my-rooms")
+            }
             className="
               bg-gray-50
               rounded-3xl
@@ -89,6 +122,9 @@ export default function HousingSection() {
           </button>
 
           <button
+            onClick={() =>
+              navigate("/favorite-rooms")
+            }
             className="
               bg-gray-50
               rounded-3xl
@@ -107,6 +143,9 @@ export default function HousingSection() {
           </button>
 
           <button
+            onClick={() =>
+              navigate("/archive")
+            }
             className="
               bg-gray-50
               rounded-3xl
