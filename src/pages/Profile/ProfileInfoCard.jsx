@@ -5,7 +5,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-export default function ProfileInfoCard({user, userState}) {
+export default function ProfileInfoCard({user, setUser}) {
   
   const [isEditing, setIsEditing] =
     useState(false);
@@ -37,6 +37,35 @@ export default function ProfileInfoCard({user, userState}) {
       }
     };
 
+  const defaultMaleImage =
+  "/images/default-male.png";
+
+  const defaultFemaleImage =
+    "/images/default-female.png";
+
+  const profileImage =
+    user.profileImage ||
+    (
+      user.gender === "male"
+        ? defaultMaleImage
+        : defaultFemaleImage
+    );
+
+  const handleImageUpload = (event) => {
+    const file =
+      event.target.files[0];
+  
+    if (!file) return;
+  
+    const imageUrl =
+      URL.createObjectURL(file);
+  
+    setUser({
+      ...user,
+      profileImage: imageUrl
+    });
+  };
+
   return (
     <div className="bg-white rounded-[35px] shadow-sm overflow-hidden">
 
@@ -53,7 +82,7 @@ export default function ProfileInfoCard({user, userState}) {
         <div className="relative inline-block">
 
           <img
-            src={user.profileImage}
+            src={profileImage}
             alt={user.fullName}
             className="
               w-40
@@ -64,7 +93,7 @@ export default function ProfileInfoCard({user, userState}) {
             "
           />
 
-          <button
+          <label
             className="
               absolute
               bottom-0
@@ -73,12 +102,21 @@ export default function ProfileInfoCard({user, userState}) {
               rounded-2xl
               bg-white
               shadow
+              cursor-pointer
             "
           >
             <Camera />
-          </button>
+
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleImageUpload}
+            />
+          </label>
 
         </div>
+
 
         {isEditing ? (
           <input
@@ -91,8 +129,12 @@ export default function ProfileInfoCard({user, userState}) {
             }
             className="
               mt-4
+              mx-auto
+              block
+              w-72
+              max-w-full
               text-center
-              text-1xl
+              text-xl
               font-bold
               border-2
               border-indigo-400
@@ -110,30 +152,70 @@ export default function ProfileInfoCard({user, userState}) {
 
           )}
 
-          {isEditing ? (
-              <input
-                value={user.age}
-                onChange={(e) =>
-                  setUser({
-                    ...user,
-                    rentBudget: e.target.value
-                  })
-                }
-                className="
-                  w-full
-                  border
-                  rounded-lg
-                  p-2
-                  bg-yellow-50
-                "
-              />
+          <div className="mt-2 text-gray-500 space-y-1">
 
-              ) : (
+        {isEditing ? (
+          <>
+            <select
+              value={user.gender}
+              onChange={(e) =>
+                setUser({
+                  ...user,
+                  gender: e.target.value
+                })
+              }
+              className="
+                border
+                rounded-lg
+                p-2
+                bg-yellow-50
+              "
+            >
+              <option value="male">مرد</option>
+              <option value="female">زن</option>
+            </select>
 
-            <p className="text-gray-500">
+            <input
+              type="number"
+              value={user.age}
+              onChange={(e) =>
+                setUser({
+                  ...user,
+                  age: e.target.value
+                })
+              }
+              className="
+                border
+                rounded-lg
+                p-2
+                bg-yellow-50
+                w-24
+                text-center
+                block
+                mx-auto
+                mt-2
+              "
+            />
+
+          </>
+
+        ) : (
+
+          <>
+            <p>
+              {user.gender === "male"
+                ? "مرد"
+                : "زن"}
+            </p>
+
+            <p>
               {user.age} ساله
             </p>
-            )}
+          </>
+
+        )}
+
+</div>
 
       </div>
 
