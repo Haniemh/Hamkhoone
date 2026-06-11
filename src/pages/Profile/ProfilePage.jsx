@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import ProfileInfoCard from "./ProfileInfoCard";
 import HousingSection from "./HousingSection";
 import BadgesSection from "./BadgesSection";
@@ -5,8 +7,33 @@ import PremiumCard from "./PremiumCard";
 import PsychologySection from "./PsychologySection";
 import BottomNav from "./BottomNav";
 
-
 export default function ProfilePage() {
+
+  const [user, setUser] = useState({
+    fullName: "زهرا محمدی",
+
+    age: 30,
+
+    profileImage:
+      "https://i.pravatar.cc/300",
+
+    about:
+      "دانشجوی مهندسی نرم افزار و به دنبال هم‌خانه‌ای منظم و اجتماعی.",
+
+    rentBudget: "۸ میلیون",
+
+    depositBudget: "۳۰۰ میلیون",
+
+    deadline: "۳۰ روز",
+
+    tags: [
+      "برونگرا",
+      "کتابخوان",
+      "ورزشکار",
+      "اجتماعی"
+    ]
+  });
+
   return (
     <div
       dir="rtl"
@@ -22,7 +49,10 @@ export default function ProfilePage() {
         "
       >
 
-        <ProfileInfoCard />
+        <ProfileInfoCard
+          user={user}
+          setUser={setUser}
+        />
 
         <HousingSection />
 
