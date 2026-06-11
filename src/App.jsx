@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
+import Login from "./pages/Entrance/Login";
+import SignUp from "./pages/Entrance/SignUp";
 import Profile from "./pages/Profile/ProfilePage";
 import CreateRoommateAdPage from "./pages/Roommate/CreateRoommatePage";
 import CreatePropertyPage from "./pages/Property/CreatePropertyPage";
