@@ -49,7 +49,9 @@ export default function ProfilePage() {
           setUser={setUser}
         />
 
-        <HousingSection />
+        <HousingSection 
+          user={user}
+        />
 
         <BadgesSection 
           user={user}

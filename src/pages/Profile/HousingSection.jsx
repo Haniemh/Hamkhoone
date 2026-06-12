@@ -1,3 +1,7 @@
+import { useState } from "react";
+import ConfirmPublishModal from "./ConfirmPublishModal";
+import { useNavigate } from "react-router-dom";
+
 import {
   Home,
   DoorOpen,
@@ -5,10 +9,56 @@ import {
   Archive,
   Users
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
-export default function HousingSection() {
+export default function HousingSection({user}) {
   const navigate = useNavigate();
+
+  const [showPublishModal,
+    setShowPublishModal]
+    = useState(false);
+
+    const [loading, setLoading] =
+    useState(false);
+
+    const [successMessage,
+      setSuccessMessage]
+      = useState(false);
+
+    const publishAd = () => {
+      setShowPublishModal(false);
+      setSuccessMessage(true);
+      const newAd = {
+        id: Date.now(),
+        title:
+          `${user.fullName} دنبال هم‌اتاقی است`,
+        fullName:
+          user.fullName,
+        gender:
+          user.gender,
+        age:
+          user.age,
+        about:
+          user.about,
+        rentBudget:
+          user.rentBudget,
+        depositBudget:
+          user.depositBudget,
+        deadline:
+          user.deadline,
+        tags:
+          user.tags,
+        image:
+          user.profileImage
+      };
+    
+      localStorage.setItem(
+        "roommateAd",
+        JSON.stringify(newAd)
+      );
+    
+      navigate("/profile");
+    };
+
   return (
     <div className="bg-white rounded-[35px] p-6 shadow-sm">
 
@@ -34,9 +84,9 @@ export default function HousingSection() {
           </h3>
 
           <button
-            onClick={() =>
-              navigate("/create-roommate-ad")
-            }
+            onClick={() => {
+              setShowPublishModal(true);
+            }}
             className="
               mt-4
               text-indigo-500
@@ -50,6 +100,25 @@ export default function HousingSection() {
           >
             ثبت آگهی جدید
           </button>
+
+          {
+            successMessage && (
+              <div
+                className="
+                  mb-4
+                  bg-green-50
+                  border
+                  border-green-200
+                  text-green-700
+                  p-4
+                  rounded-2xl
+                  text-center
+                "
+              >
+                آگهی با موفقیت ثبت شد
+              </div>
+            )
+          }
         </div>
 
         {/* آگهی خانه */}
@@ -167,6 +236,17 @@ export default function HousingSection() {
 
       </div>
 
+      {
+        showPublishModal && (
+          <ConfirmPublishModal
+            loading={loading}
+            onClose={() =>
+              setShowPublishModal(false)
+            }
+            onConfirm={publishAd}
+          />
+        )
+      }
     </div>
   );
 }
