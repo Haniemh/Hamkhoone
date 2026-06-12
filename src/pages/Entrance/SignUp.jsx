@@ -55,7 +55,7 @@ export default function SignUp() {
     if (!/^[A-Za-z0-9]+$/.test(password)) {
       setIsSuccess(false);
       setMessage( "رمز عبور فقط می‌تواند شامل حروف انگلیسی و اعداد باشد");
-      return;
+       return;
     }
 
     if (password !== confirmPassword) {

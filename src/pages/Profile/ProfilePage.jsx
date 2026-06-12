@@ -5,7 +5,7 @@ import HousingSection from "./HousingSection";
 import BadgesSection from "./BadgesSection";
 import PremiumCard from "./PremiumCard";
 import PsychologySection from "./PsychologySection";
-import BottomNav from "./BottomNav";
+import BottomNav from "../BottomNav";
 
 export default function ProfilePage() {
 
