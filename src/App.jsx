@@ -5,9 +5,9 @@ import SignUp from "./pages/Entrance/SignUp";
 import Profile from "./pages/Profile/ProfilePage";
 import CreateRoommateAdPage from "./pages/Roommate/CreateRoommatePage";
 import CreatePropertyPage from "./pages/Property/CreatePropertyPage";
-import MyRoomsPage from "./pages/MyRoomsPage/MyRoomsPage";
-import FavoriteRoomsPage from "./pages/FavoriteRoomsPage/FavoriteRoomsPage";
-import ArchivePage from "./pages/ArchivePage/ArchivePage";
+import MyRoomsPage from "./pages/Profile/MyRoomsPage/MyRoomsPage";
+import FavoriteRoomsPage from "./pages/Profile/FavoriteRoomsPage/FavoriteRoomsPage";
+import ArchivePage from "./pages/Profile/ArchivePage/ArchivePage";
 
 function App() {
   return (
