@@ -56,7 +56,9 @@ export default function HousingSection({user}) {
         JSON.stringify(newAd)
       );
     
-      navigate("/profile");
+      setTimeout(() => {
+        setSuccessMessage(false);
+      }, 5000);
     };
 
   return (
