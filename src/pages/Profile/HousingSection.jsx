@@ -1,6 +1,6 @@
-import { useState } from "react";
 import ConfirmPublishModal from "./ConfirmPublishModal";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import {
   Home,
@@ -23,6 +23,21 @@ export default function HousingSection({user}) {
     const [successMessage,
       setSuccessMessage]
       = useState(false);
+
+    const [propertySuccessMessage,
+      setPropertySuccessMessage] =
+      useState(false);
+
+    useEffect(() => {
+      const published =
+      localStorage.getItem( "propertyPublished");
+      
+      if (published === "true") {setPropertySuccessMessage(true);
+         localStorage.removeItem("propertyPublished");
+
+      setTimeout(() => { setPropertySuccessMessage(false);}, 5000);}
+    },
+    []);
 
     const publishAd = () => {
       setShowPublishModal(false);
@@ -153,24 +168,23 @@ export default function HousingSection({user}) {
           >
             ثبت ملک جدید
           </button>
-           {
-            successMessage && (
-              <div
-                className="
-                  mb-4
-                  bg-green-50
-                  border
-                  border-green-200
-                  text-green-700
-                  p-4
-                  rounded-2xl
-                  text-center
-                "
-              >
-                آگهی با موفقیت ثبت شد
-              </div>
-            )
-          }
+          {
+           propertySuccessMessage && (
+           <div
+             className="
+             mt-4
+             bg-green-50
+             border
+             border-green-200
+             text-green-700
+             p-4
+             rounded-2xl
+             text-center
+            "
+          > آگهی ملک با موفقیت ثبت شد
+        </div>
+      )
+      }
         </div>
 
       </div>
