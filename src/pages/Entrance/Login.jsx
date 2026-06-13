@@ -1,11 +1,25 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function Login() {
   const navigate = useNavigate();
-
+  
   const handleLogin = () => {
+    setErrorMessage("");
+    if (!username.trim()) {
+      return setErrorMessage("نام کاربری یا ایمیل را وارد کنید");
+    }
+    if (!password.trim()) {
+      return setErrorMessage("رمز عبور را وارد کنید");
+    }
     navigate("/profile");
   };
+  
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
@@ -23,21 +37,39 @@ export default function Login() {
           <input
             type="text"
             placeholder="نام کاربری / ایمیل"
-            className="w-full p-4 rounded-xl border outline-none"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="w-full p-4 rounded-xl border outline-none text-right placeholder:text-right"
           />
 
+          <div className="relative">
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="رمز عبور"
-            className="w-full p-4 rounded-xl border outline-none"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-4 rounded-xl border outline-none text-right placeholder:text-right"
           />
-        </div>
 
+          <button
+            type="button"
+            onClick={() =>setShowPassword(!showPassword)}
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                {showPassword ? (
+                  <Eye size={20} />) : (<EyeOff size={20} />)}
+          </button>
+
+        </div>
+      </div>
         <div className="text-right mt-3">
           <button className="text-indigo-600">
             فراموشی رمز؟
           </button>
         </div>
+
+        {errorMessage && (
+          <p className="text-red-500 text-sm text-center mt-4">{errorMessage}</p>
+        )}
 
         <button
           onClick={handleLogin}

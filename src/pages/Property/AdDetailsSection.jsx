@@ -57,6 +57,7 @@ export default function AdDetailsSection({
       <div className="px-6 py-6">
 
         <textarea
+         rows={7}
          value={roomDescription}
          onChange={(e) =>setRoomDescription(e.target.value)}
          className={textareaClass}
@@ -74,6 +75,7 @@ export default function AdDetailsSection({
       <div className="px-6 py-6">
 
        <textarea
+         rows={7}
          value={neighborhoodDescription}
          onChange={(e) =>setNeighborhoodDescription(e.target.value)}
          className={textareaClass}
