@@ -153,6 +153,24 @@ export default function HousingSection({user}) {
           >
             ثبت ملک جدید
           </button>
+           {
+            successMessage && (
+              <div
+                className="
+                  mb-4
+                  bg-green-50
+                  border
+                  border-green-200
+                  text-green-700
+                  p-4
+                  rounded-2xl
+                  text-center
+                "
+              >
+                آگهی با موفقیت ثبت شد
+              </div>
+            )
+          }
         </div>
 
       </div>
