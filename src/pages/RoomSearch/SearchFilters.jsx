@@ -70,7 +70,7 @@ export default function SearchFilters() {
         {filters.map((item) => (
           <button
             key={item}
-            className={` flex-shrink-0 h-11 px-5 rounded-full border border-gray-200 bg-white text-gray-600 text-sm flex items-center gap-2`}
+            className={` shrink-0 h-11 px-5 rounded-full border border-gray-200 bg-white text-gray-600 text-sm flex items-center gap-2`}
           >
             {item === "تاریخ خالی شدن" && (
               <CalendarDaysIcon className="w-4 h-4" />
