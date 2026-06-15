@@ -1,23 +1,21 @@
-const items = [
-    "ویژگی‌های شخصیتی",
-    "سبک حل تعارض",
-    "تست ارزش‌ها و مرزها",
-    "سبک زندگی",
-  ];
-  
-  export default function PsychologySection() {
-    return (
-      <div className="bg-white rounded-3xl p-5">
-  
-        <h2 className="text-2xl font-bold mb-6">
-          تحلیل روانشناختی
-        </h2>
-  
-        <div className="space-y-4">
-  
-          {items.map(item => (
+export default function PsychologySection({ user }) {
+  const items = Object.values(user.psychology);
+
+  return (
+    <div className="bg-white rounded-3xl p-5">
+      <h2 className="text-2xl font-bold mb-6">
+        تحلیل روانشناختی
+      </h2>
+
+      <div className="space-y-4">
+        {items.map((item) => {
+          const hasResult =
+            item.result &&
+            item.result.trim() !== "";
+
+          return (
             <div
-              key={item}
+              key={item.title}
               className="
                 flex
                 items-center
@@ -27,15 +25,31 @@ const items = [
                 bg-gray-50
               "
             >
-              <span>{item}</span>
-  
-              <span className="text-green-500">
-                ✓
+              <div>
+                <p className="font-medium">
+                  {item.title}
+                </p>
+
+                {hasResult && (
+                  <p className="text-sm text-gray-500 mt-1">
+                    {item.result}
+                  </p>
+                )}
+              </div>
+
+              <span
+                className={`text-xl font-bold ${
+                  hasResult
+                    ? "text-green-500"
+                    : "text-red-500"
+                }`}
+              >
+                {hasResult ? "✓" : "✕"}
               </span>
             </div>
-          ))}
-  
-        </div>
+          );
+        })}
       </div>
-    );
-  }
+    </div>
+  );
+}

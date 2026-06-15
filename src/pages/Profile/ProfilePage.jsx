@@ -25,6 +25,33 @@ export default function ProfilePage() {
       "ورزشکار",
       "اجتماعی"
     ],
+  
+    psychology: {
+      personality: {
+        title: "ویژگی‌های شخصیتی",
+        result: "برونگرا، مسئولیت‌پذیر و همدل",
+        completed: true,
+      },
+  
+      conflictStyle: {
+        title: "سبک حل تعارض",
+        result: null,
+        completed: true,
+      },
+  
+      values: {
+        title: "تست ارزش‌ها و مرزها",
+        result: "احترام متقابل، نظم و حفظ حریم شخصی",
+        completed: true,
+      },
+  
+      lifestyle: {
+        title: "سبک زندگی",
+        result: "فعال، منظم و اجتماعی",
+        completed: true,
+      },
+    },
+  
     phoneVerified: true,
     emailVerified: false,
   });
@@ -59,7 +86,9 @@ export default function ProfilePage() {
 
         {/* <PremiumCard /> */}
 
-        <PsychologySection />
+        <PsychologySection 
+          user={user} 
+        />
 
       </div>
 
