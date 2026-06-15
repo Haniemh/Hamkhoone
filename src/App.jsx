@@ -8,6 +8,7 @@ import CreatePropertyPage from "./pages/Property/CreatePropertyPage";
 import MyRoomsPage from "./pages/Profile/MyRoomsPage/MyRoomsPage";
 import FavoriteRoomsPage from "./pages/Profile/FavoriteRoomsPage/FavoriteRoomsPage";
 import ArchivePage from "./pages/Profile/ArchivePage/ArchivePage";
+import RoomSearchPage from "./pages/RoomSearch/RoomSearchPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/my-rooms" element={<MyRoomsPage />} />
         <Route path="/favorite-rooms" element={<FavoriteRoomsPage />} />
         <Route path="/archive" element={<ArchivePage />} />
+        <Route path="/RoomSearch" element={<RoomSearchPage />} />
       </Routes>
     </BrowserRouter>
   );
