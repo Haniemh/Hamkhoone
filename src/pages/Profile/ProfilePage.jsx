@@ -51,9 +51,11 @@ export default function ProfilePage() {
         completed: true,
       },
     },
-  
-    phoneVerified: true,
-    emailVerified: false,
+
+    phoneNumber: null, 
+    phoneVerified: false,
+    email: "zahra@example.com", 
+    emailVerified: true,
   });
 
   return (
@@ -82,12 +84,14 @@ export default function ProfilePage() {
 
         <BadgesSection 
           user={user}
+          setUser={setUser}
         />
 
         {/* <PremiumCard /> */}
 
         <PsychologySection 
-          user={user} 
+          user={user}
+          setUser={setUser}
         />
 
       </div>
