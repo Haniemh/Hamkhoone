@@ -3,11 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Entrance/Login";
 import SignUp from "./pages/Entrance/SignUp";
 import Profile from "./pages/Profile/ProfilePage";
-import CreateRoommateAdPage from "./pages/Roommate/CreateRoommatePage";
-import CreatePropertyPage from "./pages/Property/CreatePropertyPage";
 import MyRoomsPage from "./pages/Profile/MyRoomsPage/MyRoomsPage";
 import FavoriteRoomsPage from "./pages/Profile/FavoriteRoomsPage/FavoriteRoomsPage";
 import ArchivePage from "./pages/Profile/ArchivePage/ArchivePage";
+import Chats from "./pages/Chat/ChatPage";
+import RequestPage from "./pages/Request/RequestPage";
+import RoommateSearchPage from "./pages/RoommateSearch/RoommateSearchPage";
 import RoomSearchPage from "./pages/RoomSearch/RoomSearchPage";
 
 function App() {
@@ -16,12 +17,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/create-roommate-ad" element={<CreateRoommateAdPage />} />
-        <Route path="/create-property" element={<CreatePropertyPage />} />
+        <Route path="/profile" element={<Profile />} />    
         <Route path="/my-rooms" element={<MyRoomsPage />} />
         <Route path="/favorite-rooms" element={<FavoriteRoomsPage />} />
         <Route path="/archive" element={<ArchivePage />} />
+        <Route path="/Chats" element={<Chats />} />
+        <Route path="/request" element={<RequestPage />} />
+        <Route path="/RoommateSearch" element={<RoommateSearchPage />} />
         <Route path="/RoomSearch" element={<RoomSearchPage />} />
       </Routes>
     </BrowserRouter>
