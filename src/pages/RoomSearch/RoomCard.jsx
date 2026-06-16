@@ -6,7 +6,7 @@ import {
 
 export default function RoomCard({ room }) {
   return (
-    <div className="bg-white rounded-[32px] overflow-hidden shadow-sm">
+    <div className="bg-white rounded-4xl overflow-hidden shadow-sm">
 
       {/* عکس */}
       <div className="relative h-64">
@@ -221,7 +221,7 @@ export default function RoomCard({ room }) {
               </p>
 
               <p className="text-xs text-gray-400 mt-1">
-                {room.gender} | {room.age} سال
+                {room.gender == "male" ? "آقا" : "خانم"} | {room.age} سال
               </p>
 
             </div>

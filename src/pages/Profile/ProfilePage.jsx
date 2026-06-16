@@ -14,6 +14,7 @@ export default function ProfilePage() {
     gender: "female",
     age: 30,
     profileImage: null,
+    haveHaouse: false,
     about:
       "دانشجوی مهندسی نرم افزار و به دنبال هم‌خانه‌ای منظم و اجتماعی.",
     rentBudget: "۸ میلیون",
@@ -65,7 +66,7 @@ export default function ProfilePage() {
     >
       <div
         className="
-          max-w-5xl
+          max-w-7xl
           mx-auto
           p-4
           space-y-6

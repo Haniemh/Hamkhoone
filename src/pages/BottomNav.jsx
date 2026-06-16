@@ -17,7 +17,7 @@ export default function BottomNav() {
     {
       name: "هم‌اتاقی‌ها",
       icon: Users,
-      path: "/roommates",
+      path: "/RoommateSearch",
     },
     {
       name: "درخواست‌ها",
