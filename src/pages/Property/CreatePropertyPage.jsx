@@ -10,7 +10,7 @@ import GalleryUpload from "./GalleryUpload"
 import SubmitButton from "./SubmitButton";
 import BottomNav from "../BottomNav";
 
-export default function CreatePropertAd() {
+export default function CreatePropertyAd() {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
@@ -57,18 +57,14 @@ export default function CreatePropertAd() {
     return setErrorMessage("مبلغ ودیعه را وارد کنید");
 
   
+  if (!mapType) return setErrorMessage("نوع نقشه را انتخاب کنید");
 
-  if (mapType === "نقشه")
-    return setErrorMessage("نوع نقشه را انتخاب کنید");
-  
-  if (unitType === "نوع واحد")
-    return setErrorMessage("نوع واحد را انتخاب کنید");
+  if (!unitType) return setErrorMessage("نوع واحد را انتخاب کنید");
 
-  if (duration === "مدت")
-    return setErrorMessage("مدت اقامت را انتخاب کنید");
+  if (!duration) return setErrorMessage("مدت اقامت را انتخاب کنید");
 
-  if (bedrooms === "تعداد خواب")
-     return setErrorMessage("تعداد خواب را انتخاب کنید");
+  if (!bedrooms) return setErrorMessage("تعداد خواب را انتخاب کنید");
+
 
   if (!roommatesCount)
     return setErrorMessage("تعداد هم‌اتاقی الزامی است");
@@ -102,26 +98,54 @@ export default function CreatePropertAd() {
 
   const [activeModal, setActiveModal] = useState(null);
 
-  const mapOptions = ["نقشه","کل واحد","اتاق اختصاصی","اتاق اشتراکی"];
+  const mapOptions = [
+   { value: "", label: "نقشه" },
+   { value: "full_unit", label: "کل واحد" },
+   { value: "private_room", label: "اتاق اختصاصی" },
+   { value: "shared_room", label: "اتاق اشتراکی" },
+  ];
 
-  const unitOptions = ["نوع واحد","-----------","آپارتمان","خانه ویلایی","خوابگاه","مهانسرا","آپارتمان اشتراکی","خانه باغ",
-    "زیرزمین"];
+  const unitOptions = [
+   { value: "", label: "نوع واحد" },
+   { value: "apartment", label: "آپارتمان" },
+   { value: "villa", label: "خانه ویلایی" },
+   { value: "dormitory", label: "خوابگاه" },
+   { value: "guesthouse", label: "مهانسرا" },
+   { value: "shared_apartment", label: "آپارتمان اشتراکی" },
+   { value: "garden_house", label: "خانه باغ" },
+   { value: "basement", label: "زیرزمین" },
+ ];
 
-  const durationOptions = ["مدت","قابل انعطاف","ثابت","سالانه",];
+  const durationOptions = [
+   { value: "", label: "مدت" },
+   { value: "flexible", label: "قابل انعطاف" },
+   { value: "fixed", label: "ثابت" },
+   { value: "yearly", label: "سالانه" },
+  ];
 
-  const bedroomOptions = ["تعداد خواب","یک خواب","دو خواب","سه خواب","چهار خواب","پنج خواب","شش خواب","هفت خواب","استودیو"];
+  const bedroomOptions = [
+   { value: "", label: "تعداد خواب" },
+   { value: "1", label: "یک خواب" },
+   { value: "2", label: "دو خواب" },
+   { value: "3", label: "سه خواب" },
+   { value: "4", label: "چهار خواب" },
+   { value: "5", label: "پنج خواب" },
+   { value: "6", label: "شش خواب" },
+   { value: "7", label: "هفت خواب" },
+   { value: "studio", label: "استودیو" },
+  ];
 
-  const [mapType, setMapType] = useState("نقشه");
-  const [unitType, setUnitType] = useState("نوع واحد");
-  const [duration, setDuration] = useState("مدت");
-  const [bedrooms, setBedrooms] = useState("تعداد خواب");
+  const [mapType, setMapType] = useState("");
+  const [unitType, setUnitType] = useState("");
+  const [duration, setDuration] = useState("");
+  const [bedrooms, setBedrooms] = useState("");
 
 return (
   <div
     dir="rtl"
     className="min-h-screen bg-[#F6F7FB] py-6 px-4"
   >
-    <div className="max-w-md mx-auto">
+    <div className="max-w-4xl mx-auto">
 
       <AdBanner />
 

@@ -21,6 +21,38 @@ export default function FeaturesSection({
   
 }) 
 {
+  const mapLabels = {
+  full_unit: "کل واحد",
+  private_room: "اتاق اختصاصی",
+  shared_room: "اتاق اشتراکی",
+};
+
+const unitLabels = {
+  apartment: "آپارتمان",
+  villa: "خانه ویلایی",
+  dormitory: "خوابگاه",
+  guesthouse: "مهمانسرا",
+  shared_apartment: "آپارتمان اشتراکی",
+  garden_house: "خانه باغ",
+  basement: "زیرزمین",
+};
+
+const durationLabels = {
+  flexible: "تمدید قابل انعطاف",
+  fixed: "تمدید ثابت",
+  yearly: "تمدید سالانه",
+};
+
+const bedroomLabels = {
+  studio: "استودیو",
+  one: "یک خواب",
+  two: "دو خواب",
+  three: "سه خواب",
+  four: "چهار خواب",
+  five: "پنج خواب",
+  six: "شش خواب",
+  seven: "هفت خواب",
+};
   const inputClass =
     "w-full h-16 bg-[#F3F5F8] rounded-3xl pr-5";
 
@@ -30,10 +62,26 @@ export default function FeaturesSection({
       <div className="grid grid-cols-2 gap-4">
 
         {[
-          { label: mapType, modal: "map" },
-          { label: unitType, modal: "unit" },
-          { label: duration, modal: "duration" },
-          { label: bedrooms, modal: "bedrooms" },
+          {
+            label: mapLabels[mapType] ||"نقشه",
+            isPlaceholder: !mapType,
+            modal: "map",
+          },
+          {
+            label: unitLabels[unitType] || "نوع واحد",
+            isPlaceholder: !unitType,
+            modal: "unit",
+          },
+          {
+            label: durationLabels[duration] || "مدت",
+            isPlaceholder: !duration,
+            modal: "duration",
+          },
+          {
+            label: bedroomLabels[bedrooms] || "تعداد خواب",
+            isPlaceholder: !bedrooms,
+            modal: "bedrooms",
+          },
         ].map((item) => (
           <button
             key={item.modal}
@@ -53,10 +101,7 @@ export default function FeaturesSection({
 
             <span
             className={
-               item.label === "نقشه" ||
-               item.label === "نوع واحد" ||
-               item.label === "مدت" ||
-               item.label === "تعداد خواب"
+               item.isPlaceholder
                 ? "text-gray-400"
                 : "text-gray-700"
                 }>

@@ -5,6 +5,52 @@ import {
 } from "lucide-react";
 
 export default function RoomCard({ room }) {
+
+  const unitTypeText =
+  room.unitType === "apartment"
+    ? "آپارتمان"
+    : room.unitType === "villa"
+    ? "خانه ویلایی"
+    : room.unitType === "dormitory"
+    ? "خوابگاه"
+    : room.unitType === "guesthouse"
+    ? "مهمانسرا"
+    : room.unitType === "shared_apartment"
+    ? "آپارتمان اشتراکی"
+    : room.unitType === "garden_house"
+    ? "خانه باغ"
+    : room.unitType === "basement"
+    ? "زیرزمین"
+    : room.unitType;
+
+const mapTypeText =
+  room.mapType === "full_unit"
+    ? "کل واحد"
+    : room.mapType === "private_room"
+    ? "اتاق اختصاصی"
+    : room.mapType === "shared_room"
+    ? "اتاق اشتراکی"
+    : room.mapType;
+
+const bedroomText =
+  room.bedrooms === "studio"
+    ? "استودیو"
+    : room.bedrooms === 1
+    ? "یک خواب"
+    : room.bedrooms === 2
+    ? "دو خواب"
+    : room.bedrooms === 3
+    ? "سه خواب"
+    : room.bedrooms === 4
+    ? "چهار خواب"
+    : room.bedrooms === 5
+    ? "پنچ خواب"
+    : room.bedrooms === 6
+    ? "شش خواب"
+    : room.bedrooms === 7
+    ? "هفت خواب"
+    : room.bedrooms;
+
   return (
     <div className="bg-white rounded-4xl overflow-hidden shadow-sm">
 
@@ -165,7 +211,7 @@ export default function RoomCard({ room }) {
               text-xs
             "
           >
-            {room.mapType}
+            {mapTypeText}
           </div>
 
           <div
@@ -178,7 +224,7 @@ export default function RoomCard({ room }) {
               text-xs
             "
           >
-            {room.bedrooms}
+            {bedroomText}
           </div>
 
           <div
@@ -191,7 +237,7 @@ export default function RoomCard({ room }) {
               text-xs
             "
           >
-            {room.unitType}
+            {unitTypeText}
           </div>
 
         </div>
@@ -239,7 +285,11 @@ export default function RoomCard({ room }) {
               font-medium
             "
           >
-            {room.duration}
+            {room.duration === "flexible"
+             ? "تمدید قابل انعطاف"
+             : room.duration === "fixed"
+             ? "تمدید ثابت"
+             : "تمدید سالانه"}
           </div>
 
         </div>

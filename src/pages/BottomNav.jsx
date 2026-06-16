@@ -28,7 +28,7 @@ export default function BottomNav() {
     {
       name: "اتاق‌ها",
       icon: DoorOpen,
-      path: "/room-search",
+      path: "/RoomSearch",
     },
     {
       name: "چت‌ها",

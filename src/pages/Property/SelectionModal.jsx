@@ -5,6 +5,37 @@ export default function SelectionModal({
   value,
   onSelect,
 }) {
+
+  const labels = {
+  // duration
+   flexible: "تمدید قابل انعطاف",
+   fixed: "تمدید ثابت",
+   yearly: "تمدید سالانه",
+
+  // map
+   full_unit: "کل واحد",
+   private_room: "اتاق اختصاصی",
+   shared_room: "اتاق اشتراکی",
+
+  // unitType
+   apartment: "آپارتمان",
+   villa: "خانه ویلایی",
+   dormitory: "خوابگاه",
+   guesthouse: "مهمانسرا",
+   shared_apartment: "آپارتمان اشتراکی",
+   garden_house: "خانه باغ",
+   basement: "زیرزمین",
+
+  // bedrooms
+   studio: "استودیو",
+   one: "یک خواب",
+   two: "دو خواب",
+   three: "سه خواب",
+   four: "چهار خواب",
+   five: "پنج خواب",
+   six: "شش خواب",
+   seven: "هفت خواب",
+};
   if (!activeModal || !options) return null;
 
   return (
@@ -32,65 +63,64 @@ export default function SelectionModal({
           overflow-y-auto
         "
       >
-        {options.map((item) => {
-          const selected = value === item;
+    {options.map((item) => {
+       const selected = value === item.value;
+       return (
+       <button
+       key={item.value}
+       type="button"
+       className="
+         w-full
+         h-16
+         px-8
+         border-b
+         border-gray-200
+         flex
+         flex-row-reverse
+         items-center
+         justify-between
+         text-right
+         text-base
+         "
+         onClick={() => { onSelect(item.value);
+           setActiveModal(null);
+        }}
+       >
+      <div
+        className={`
+          w-5
+          h-5
+          rounded-full
+          border-2
+          flex
+          items-center
+          justify-center
+          ${
+            selected
+              ? "border-blue-600"
+              : "border-gray-300"
+          }
+        `}
+      >
+        {selected && (
+          <div
+            className="
+              w-3
+              h-3
+              rounded-full
+              bg-blue-600
+            "
+          />
+        )}
+      </div>
 
-          return (
-            <button
-              key={item}
-              type="button"
-              className="
-                w-full
-                h-16
-                px-8
-                border-b
-                border-gray-200
-                flex
-                flex-row-reverse
-                items-center
-                justify-between
-                text-right
-                text-base
-              "
-              onClick={() => {
-                onSelect(item);
-                setActiveModal(null);
-              }}
-            >
-              <div
-                className={`
-                  w-5
-                  h-5
-                  rounded-full
-                  border-2
-                  flex
-                  items-center
-                  justify-center
-                  ${
-                    selected
-                      ? "border-blue-600"
-                      : "border-gray-300"
-                  }
-                `}
-              >
-                {selected && (
-                  <div
-                    className="
-                      w-3
-                      h-3
-                      rounded-full
-                      bg-blue-600
-                    "
-                  />
-                )}
-              </div>
+      <span className="flex-1 text-right mr-4">
+        {item.label}
+      </span>
+    </button>
+  );
+})}
 
-              <span className="flex-1 text-right mr-4">
-                {item}
-              </span>
-            </button>
-          );
-        })}
       </div>
     </div>
   );
