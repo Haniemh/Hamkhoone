@@ -1,4 +1,3 @@
-// src/pages/RoommateSearch/RoommateSearchPage.jsx
 import { useState } from "react";
 import { Search } from "lucide-react";
 import BottomNav from "../BottomNav";
@@ -12,6 +11,7 @@ export default function RoommateSearchPage() {
     {
       id: 1,
       fullName: "زهرا محمدی",
+      username: "zahra_mohammadi",
       age: 30,
       gender: "female",
       profileImage: null,
@@ -37,6 +37,7 @@ export default function RoommateSearchPage() {
     {
       id: 2,
       fullName: "مریم کریمی",
+      username: "maryam_karimi",
       age: 25,
       gender: "female",
       profileImage: null,
@@ -62,6 +63,7 @@ export default function RoommateSearchPage() {
     {
       id: 3,
       fullName: "احمد رضایی",
+      username: "ahmad_rezaei",
       age: 28,
       gender: "male",
       profileImage: null,
@@ -87,6 +89,7 @@ export default function RoommateSearchPage() {
     {
       id: 4,
       fullName: "سارا حسینی",
+      username: "sara_hosseini",
       age: 22,
       gender: "female",
       profileImage: null,
@@ -112,6 +115,7 @@ export default function RoommateSearchPage() {
     {
       id: 5,
       fullName: "علی نوری",
+      username: "ali_nouri",
       age: 35,
       gender: "male",
       profileImage: null,
@@ -137,6 +141,7 @@ export default function RoommateSearchPage() {
     {
       id: 6,
       fullName: "فاطمه کریمی",
+      username: "fatemeh_karimi",
       age: 27,
       gender: "female",
       profileImage: null,

@@ -1,3 +1,4 @@
+// src/pages/Profile/ProfileInfoCard.jsx
 import {
   Bell,
   Camera,
@@ -63,6 +64,8 @@ export default function ProfileInfoCard({ user, setUser }) {
     "طبیعت‌دوست",
   ];
 
+  const cities = ["تهران", "اصفهان", "شیراز", "مشهد", "تبریز", "کرج", "رشت", "یزد"];
+
   const addTag = (tag) => {
     if (!user.tags.includes(tag)) {
       setUser({
@@ -119,6 +122,28 @@ export default function ProfileInfoCard({ user, setUser }) {
           />
         ) : (
           <h1 className="mt-4 text-3xl font-bold">{user.fullName}</h1>
+        )}
+
+        {/* username */}
+        {isEditing ? (
+          <div className="mt-1 flex items-center justify-center gap-2">
+            <span className="text-gray-400 text-sm">@</span>
+            <input
+              value={user.username || ""}
+              onChange={(e) =>
+                setUser({
+                  ...user,
+                  username: e.target.value,
+                })
+              }
+              placeholder="نام کاربری"
+              className="text-center text-sm text-gray-500 border-2 border-indigo-400 bg-yellow-50 rounded-lg p-1 px-3"
+            />
+          </div>
+        ) : (
+          <p className="text-sm text-gray-400 mt-1">
+            @{user.username || user.fullName.replace(/\s/g, "").toLowerCase()}
+          </p>
         )}
 
         <div className="mt-2 text-gray-500 space-y-1">

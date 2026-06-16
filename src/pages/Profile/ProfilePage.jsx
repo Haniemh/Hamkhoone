@@ -10,6 +10,7 @@ import BottomNav from "../BottomNav";
 export default function ProfilePage() {
   const [user, setUser] = useState({
     fullName: "زهرا محمدی",
+    username: "zahra_ad",
     gender: "female",
     age: 30,
     profileImage: null,

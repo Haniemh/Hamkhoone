@@ -1,5 +1,5 @@
-// src/pages/RoommateSearch/RoommateCard.jsx
 import { useNavigate } from "react-router-dom";
+import { MapPin, Calendar, Home, Check, X, Shield } from "lucide-react";
 
 export default function RoommateCard({ roommate }) {
   const navigate = useNavigate();
@@ -12,13 +12,16 @@ export default function RoommateCard({ roommate }) {
     navigate(`/roommate/${roommate.id}`);
   };
 
+  const isVerified = roommate.phoneVerified && roommate.emailVerified;
+
   return (
     <div
       onClick={handleClick}
       className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col"
     >
       <div className="p-4 flex flex-col h-full">
-        <div className="flex flex-col items-center text-center mb-4">
+        {/* هدر با عکس و اطلاعات اصلی */}
+        <div className="flex items-start gap-3 mb-3">
           <img
             src={
               roommate.profileImage ||
@@ -27,82 +30,115 @@ export default function RoommateCard({ roommate }) {
                 : "/images/default-male.png")
             }
             alt={roommate.fullName}
-            className="w-32 h-32 rounded-full object-cover mb-3"
+            className="w-16 h-16 rounded-full object-cover shrink-0"
           />
 
-          <h3 className="font-bold text-lg">{roommate.fullName}</h3>
-          <p className="text-gray-500 text-sm">
-            {roommate.gender === "female" ? "زن" : "مرد"}، {roommate.age} ساله
-          </p>
-          <p className="text-gray-400 text-sm mt-1">
-            {roommate.city}، {roommate.neighborhood}
-          </p>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center justify-between">
+              <h3 className="font-bold text-base truncate">{roommate.fullName}</h3>
+              <span className="text-xs text-gray-400">{"@" + roommate.username}</span>
+            </div>
+            <p className="text-gray-500 text-sm">
+              {roommate.gender === "female" ? "زن" : "مرد"}، {roommate.age} ساله
+            </p>
+          </div>
         </div>
 
-        <div className="text-center mb-3">
-          <p className="font-bold text-indigo-600 text-lg">
-            {formatPrice(roommate.rentBudget)} تومان
-          </p>
-          <p className="text-xs text-gray-500">اجاره ماهانه</p>
+        {/* توضیحات کوتاه */}
+        <p className="text-gray-600 text-sm line-clamp-2 mb-3">
+          {roommate.about}
+        </p>
+
+        {/* اطلاعات مالی - باکس‌های جداگانه */}
+        <div className="grid grid-cols-2 gap-2 mb-3">
+          {/* اجاره ماهانه */}
+          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-3 border border-indigo-200">
+            <p className="text-xs text-indigo-600 font-medium">اجاره ماهانه</p>
+            <p className="font-bold text-indigo-700 text-sm mt-1">
+              {formatPrice(roommate.rentBudget)} تومان
+            </p>
+          </div>
+
+          {/* بودجه کل */}
+          <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-3 border border-emerald-200">
+            <p className="text-xs text-emerald-600 font-medium">بودجه کل</p>
+            <p className="font-bold text-emerald-700 text-sm mt-1">
+              {formatPrice(roommate.depositBudget)} تومان
+            </p>
+          </div>
         </div>
 
-        <div className="flex justify-center mt-2">
+        {/* موقعیت مکانی */}
+        <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 mb-3">
+          <div className="flex items-center gap-1">
+            <MapPin size={14} />
+            <span>{roommate.city}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <Home size={14} />
+            <span>{roommate.neighborhood}</span>
+          </div>
+          {roommate.moreLocations && (
+            <span className="text-indigo-600">+{roommate.moreLocations} محله دیگر</span>
+          )}
+        </div>
+
+        {/* وضعیت خانه و مهلت */}
+        <div className="flex flex-wrap items-center justify-between gap-2 text-xs mb-3">
           <span
-            className={`text-xs px-3 py-1 rounded-full ${
+            className={`inline-flex items-center gap-1 px-2 py-1 rounded-full ${
               roommate.haveHouse
                 ? "bg-green-50 text-green-600"
                 : "bg-blue-50 text-blue-600"
             }`}
           >
-            {roommate.haveHouse ? "🏠 خانه دارم" : "🔍 دنبال همخونه"}
+            <Home size={12} />
+            {roommate.haveHouse ? "صاحب خانه" : "دنبال همخونه"}
+          </span>
+          
+          <span className="inline-flex items-center gap-1 text-gray-500">
+            <Calendar size={12} />
+            {roommate.deadline}
           </span>
         </div>
 
-        <div className="flex flex-wrap gap-2 justify-center mt-3">
-          {roommate.tags.slice(0, 3).map((tag) => (
+        {/* هشتگ‌ها */}
+        <div className="flex flex-wrap gap-1.5 mb-3">
+          {roommate.tags.slice(0, 4).map((tag) => (
             <span
               key={tag}
-              className="bg-indigo-50 text-indigo-600 px-2 py-1 rounded-full text-xs"
+              className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs"
             >
               #{tag}
             </span>
           ))}
+          {roommate.tags.length > 4 && (
+            <span className="text-gray-400 text-xs">+{roommate.tags.length - 4}</span>
+          )}
         </div>
 
-        <div className="flex items-center justify-center gap-4 mt-4 text-xs">
-          <div className="flex items-center gap-1">
-            <span
-              className={
-                Object.values(roommate.psychology).some(
-                  (item) => item.result && item.result.trim() !== ""
-                )
-                  ? "text-green-500"
-                  : "text-red-500"
-              }
-            >
-              {Object.values(roommate.psychology).some(
-                (item) => item.result && item.result.trim() !== ""
-              )
-                ? "✓"
-                : "✕"}
-            </span>
-            <span>تست روانشناختی</span>
+        {/* احراز هویت */}
+        <div className="flex items-center gap-3 border-t border-gray-100 pt-3 mt-auto">
+          <div className={`p-2 rounded-full ${isVerified ? "bg-green-100" : "bg-red-100"}`}>
+            <Shield size={18} className={isVerified ? "text-green-600" : "text-red-600"} />
           </div>
-          <div className="flex items-center gap-1">
-            <span
-              className={
-                roommate.phoneVerified ? "text-green-500" : "text-red-500"
-              }
-            >
-              {roommate.phoneVerified ? "✓" : "✕"}
-            </span>
-            <span>احراز هویت</span>
+          <div>
+            <p className="text-xs text-gray-500">احراز هویت</p>
+            <div className="flex items-center gap-1.5">
+              {isVerified ? (
+                <>
+                  <Check size={16} className="text-green-600" />
+                  <span className="text-sm font-semibold text-green-600">تایید شده</span>
+                </>
+              ) : (
+                <>
+                  <X size={16} className="text-red-600" />
+                  <span className="text-sm font-semibold text-red-600">تایید نشده</span>
+                </>
+              )}
+            </div>
           </div>
         </div>
-
-        <button className="mt-4 w-full bg-indigo-50 text-indigo-600 py-2 rounded-xl text-sm font-medium hover:bg-indigo-100 transition">
-          مشاهده پروفایل و ارسال درخواست
-        </button>
       </div>
     </div>
   );
