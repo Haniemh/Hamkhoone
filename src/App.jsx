@@ -10,6 +10,7 @@ import Chats from "./pages/Chat/ChatPage";
 import RequestPage from "./pages/Request/RequestPage";
 import RoommateSearchPage from "./pages/RoommateSearch/RoommateSearchPage";
 import RoomSearchPage from "./pages/RoomSearch/RoomSearchPage";
+import CreatePropertAd from "./pages/Property/CreatePropertyPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/request" element={<RequestPage />} />
         <Route path="/RoommateSearch" element={<RoommateSearchPage />} />
         <Route path="/RoomSearch" element={<RoomSearchPage />} />
+        <Route path="/create-property" element={<CreatePropertAd />} />
       </Routes>
     </BrowserRouter>
   );

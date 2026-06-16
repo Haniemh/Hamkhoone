@@ -23,6 +23,44 @@ export default function RoomSearchPage() {
       ownerImage: "/images/default-female.png",
       date: "یکشنبه 1405/01/01",
     },
+    {
+      id: 2,
+      image: "/images/room1.jpg",
+      city: "تهران",
+      district: "سعادت آباد",
+      bathrooms: 1,
+      roommates: 2,
+      deposit: "۳۰۰ میلیون",
+      rent: "۸ میلیون",
+      mapType: "کل واحد",
+      bedrooms: "۲ خواب",
+      unitType: "آپارتمان",
+      owner: "زهرا محمدی",
+      gender: "male",
+      age: 30,
+      duration: "۳۰ روز",
+      ownerImage: "/images/default-female.png",
+      date: "یکشنبه 1405/01/01",
+    },
+    {
+      id: 3,
+      image: "/images/room1.jpg",
+      city: "تهران",
+      district: "صادقیه",
+      bathrooms: 1,
+      roommates: 2,
+      deposit: "۳۰۰ میلیون",
+      rent: "۸ میلیون",
+      mapType: "کل واحد",
+      bedrooms: "۲ خواب",
+      unitType: "آپارتمان",
+      owner: "زهرا محمدی",
+      gender: "female",
+      age: 30,
+      duration: "۳۰ روز",
+      ownerImage: "/images/default-female.png",
+      date: "یکشنبه 1405/01/01",
+    },
   ];
   
   return (
@@ -34,14 +72,23 @@ export default function RoomSearchPage() {
         </div>
 
         <SearchFilters />
-        <div className="space-y-4 mt-4">
-      {rooms.map((room) => (
-        <RoomCard
+        <div
+          className="
+          mt-5
+          grid
+          grid-cols-1
+          md:grid-cols-2
+          xl:grid-cols-3
+          gap-5
+          "
+        >
+        {rooms.map((room) => (
+          <RoomCard
           key={room.id}
           room={room}
-        />
-      ))}
-    </div>
+          />
+          ))}
+      </div>
       
     <div className="
       bg-white
