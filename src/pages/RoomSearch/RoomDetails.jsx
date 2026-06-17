@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import BottomNav from "../BottomNav";
 import { useNavigate } from "react-router-dom";
-
+import { useState, useEffect } from "react";
 
 import {
   Heart,
@@ -17,6 +17,7 @@ import {
 
 export default function RoomDetails() {
   const navigate = useNavigate();
+
 
   const location = useLocation();
 
@@ -52,6 +53,17 @@ export default function RoomDetails() {
 
   const room = location.state?.room;
 
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    const favorites =
+     JSON.parse(localStorage.getItem("favoriteRooms")) || [];
+    
+     setIsFavorite(
+       favorites.some((item) => item.id === room.id)
+      );
+    }, [room]);
+
   if (!room) {
     return (
       <div className="p-10 text-center">
@@ -59,6 +71,35 @@ export default function RoomDetails() {
       </div>
     );
   }
+
+  const toggleFavorite = () => {
+    const favorites =
+    JSON.parse(localStorage.getItem("favoriteRooms")) || [];
+    
+    const exists = favorites.some(
+       (item) => item.id === room.id
+      );
+      
+    let updated;
+
+    if (exists) {
+       updated = favorites.filter(
+       (item) => item.id !== room.id
+      );
+
+      setIsFavorite(false);
+    } 
+    else {
+      updated = [...favorites, room];
+
+      setIsFavorite(true);
+    }
+
+    localStorage.setItem(
+      "favoriteRooms",
+      JSON.stringify(updated)
+    );
+  };
 
   return (
     <div
@@ -191,7 +232,7 @@ export default function RoomDetails() {
         >
         
         <button
-          onClick={() => navigate("/favorite-rooms")}
+          onClick={toggleFavorite}
           className="
           w-12 h-12
           rounded-2xl
@@ -199,7 +240,10 @@ export default function RoomDetails() {
           flex items-center justify-center
         "
         >
-          <Heart size={20}/>
+          <Heart size={20}
+            fill={isFavorite ? "red" : "none"}
+            color={isFavorite ? "red" : "currentColor"}
+          />
         </button>
 
           <div
