@@ -209,7 +209,7 @@ if (advancedFilters.maxDeposit) {
     <div dir="rtl" className="min-h-screen bg-[#f5f6fa]">
       <div className="max-w-7xl mx-auto p-4 pb-32">
 
-        {/* هدر */}
+        {/* Header */}
         <div className="mb-6">
 
           <div className="hidden md:flex items-center justify-between">

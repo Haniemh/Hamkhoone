@@ -1,3 +1,5 @@
+import BottomNav from "../BottomNav";
+
 export default function Dashboard() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-100">
@@ -10,6 +12,7 @@ export default function Dashboard() {
             صفحه request
           </p>
         </div>
+        <BottomNav></BottomNav>
       </div>
     );
   }

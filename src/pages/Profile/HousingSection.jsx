@@ -83,12 +83,7 @@ export default function HousingSection({user}) {
         مدیریت آگهی و هم‌خونه
       </h2>
 
-      {/* آگهی ها */}
-
       <div className="space-y-4">
-
-        {/* آگهی هم اتاقی */}
-
         <div className="border border-dashed rounded-3xl p-8 text-center">
           <Users
             size={45}
@@ -138,8 +133,6 @@ export default function HousingSection({user}) {
           }
         </div>
 
-        {/* آگهی خانه */}
-
         <div className="border border-dashed rounded-3xl p-8 text-center">
           <Home
             size={45}
@@ -186,21 +179,9 @@ export default function HousingSection({user}) {
       )
       }
         </div>
-
       </div>
 
-      {/* دکمه ها */}
-
       <div className="mt-6">
-
-        {/* موبایل:
-            1 ستون
-        */}
-
-        {/* دسکتاپ:
-            3 ستون
-        */}
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
           <button

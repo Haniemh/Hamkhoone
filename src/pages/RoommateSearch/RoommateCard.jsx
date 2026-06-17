@@ -9,7 +9,7 @@ export default function RoommateCard({ roommate }) {
   };
 
   const handleClick = () => {
-    navigate(`/roommate/${roommate.id}`);
+    navigate(`/roommate-search/${roommate.id}`);
   };
 
   const isVerified = roommate.phoneVerified && roommate.emailVerified;
@@ -20,7 +20,6 @@ export default function RoommateCard({ roommate }) {
       className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex flex-col"
     >
       <div className="p-4 flex flex-col h-full">
-        {/* هدر با عکس و اطلاعات اصلی */}
         <div className="flex items-start gap-3 mb-3">
           <img
             src={
@@ -44,14 +43,11 @@ export default function RoommateCard({ roommate }) {
           </div>
         </div>
 
-        {/* توضیحات کوتاه */}
         <p className="text-gray-600 text-sm line-clamp-2 mb-3">
           {roommate.about}
         </p>
 
-        {/* اطلاعات مالی - باکس‌های جداگانه */}
         <div className="grid grid-cols-2 gap-2 mb-3">
-          {/* اجاره ماهانه */}
           <div className="bg-linear-to-br from-indigo-50 to-indigo-100 rounded-xl p-3 border border-indigo-200">
             <p className="text-xs text-indigo-600 font-medium">اجاره ماهانه</p>
             <p className="font-bold text-indigo-700 text-sm mt-1">
@@ -59,7 +55,6 @@ export default function RoommateCard({ roommate }) {
             </p>
           </div>
 
-          {/* بودجه کل */}
           <div className="bg-linear-to-br from-emerald-50 to-emerald-100 rounded-xl p-3 border border-emerald-200">
             <p className="text-xs text-emerald-600 font-medium">بودجه کل</p>
             <p className="font-bold text-emerald-700 text-sm mt-1">
@@ -68,7 +63,6 @@ export default function RoommateCard({ roommate }) {
           </div>
         </div>
 
-        {/* موقعیت مکانی */}
         <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 mb-3">
           <div className="flex items-center gap-1">
             <MapPin size={14} />
@@ -83,7 +77,6 @@ export default function RoommateCard({ roommate }) {
           )}
         </div>
 
-        {/* وضعیت خانه و مهلت */}
         <div className="flex flex-wrap items-center justify-between gap-2 text-xs mb-3">
           <span
             className={`inline-flex items-center gap-1 px-2 py-1 rounded-full ${
@@ -102,7 +95,6 @@ export default function RoommateCard({ roommate }) {
           </span>
         </div>
 
-        {/* هشتگ‌ها */}
         <div className="flex flex-wrap gap-1.5 mb-3">
           {roommate.tags.slice(0, 4).map((tag) => (
             <span
@@ -117,7 +109,6 @@ export default function RoommateCard({ roommate }) {
           )}
         </div>
 
-        {/* احراز هویت */}
         <div className="flex items-center gap-3 border-t border-gray-100 pt-3 mt-auto">
           <div className={`p-2 rounded-full ${isVerified ? "bg-green-100" : "bg-red-100"}`}>
             <Shield size={18} className={isVerified ? "text-green-600" : "text-red-600"} />

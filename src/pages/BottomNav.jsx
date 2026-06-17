@@ -39,7 +39,7 @@ export default function BottomNav() {
 
   return (
     <div className="fixed bottom-4 left-4 right-4 max-w-md mx-auto bg-white rounded-[30px] shadow-xl p-4 z-50">
-      <div className="flex justify-around items-center">
+      <div className="flex justify-around items-end">
 
         {tabs.map((tab) => {
           const Icon = tab.icon;
@@ -48,12 +48,21 @@ export default function BottomNav() {
             return (
               <NavLink key={tab.path} to={tab.path}>
                 {({ isActive }) => (
-                  <div
-                    className={`w-16 h-16 rounded-full flex items-center justify-center -mt-10 shadow-lg transition ${
-                      isActive ? "bg-indigo-700 text-white" : "bg-indigo-600 text-white"
-                    }`}
-                  >
-                    <Icon size={26} />
+                  <div className="flex flex-col items-center">
+                    <div
+                      className={`w-16 h-16 rounded-full flex items-center justify-center -mt-10 shadow-lg transition ${
+                        isActive ? "bg-indigo-700 text-white" : "bg-indigo-600 text-white"
+                      }`}
+                    >
+                      <Icon size={26} />
+                    </div>
+                    <span
+                      className={`text-xs mt-1 transition ${
+                        isActive ? "text-indigo-600 font-bold" : "text-gray-500"
+                      }`}
+                    >
+                      {tab.name}
+                    </span>
                   </div>
                 )}
               </NavLink>

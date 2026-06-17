@@ -214,8 +214,6 @@ export default function ProfileInfoCard({ user, setUser }) {
           )}
         </div>
       </div>
-
-      {/* موقعیت مکانی */}
       <div className="px-5 pb-5">
         <h2 className="font-bold text-lg mb-3">موقعیت مکانی</h2>
 
@@ -339,7 +337,7 @@ export default function ProfileInfoCard({ user, setUser }) {
         </div>
       </div>
 
-      {/* هشتگ‌ها */}
+      {/* Tags */}
       <div className="px-5 pb-6">
         <h2 className="font-bold text-lg mb-3">هشتگ‌ها</h2>
 

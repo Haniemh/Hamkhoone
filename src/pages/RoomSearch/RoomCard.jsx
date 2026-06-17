@@ -53,8 +53,6 @@ const bedroomText =
 
   return (
     <div className="bg-white rounded-4xl overflow-hidden shadow-sm">
-
-      {/* عکس */}
       <div className="relative h-64">
 
         <img
@@ -63,7 +61,6 @@ const bedroomText =
           className="w-full h-full object-cover"
         />
 
-        {/* تاریخ */}
         <div
           className="
             absolute
@@ -81,7 +78,6 @@ const bedroomText =
           {room.date}
         </div>
 
-        {/* شهر و محله */}
         <div
           className="
             absolute
@@ -103,7 +99,6 @@ const bedroomText =
           {room.district}، {room.city}
         </div>
 
-        {/* سرویس و هم اتاقی */}
         <div
           className="
             absolute
@@ -149,15 +144,11 @@ const bedroomText =
         </div>
 
       </div>
-
-      {/* محتوا */}
       <div className="p-5">
 
         <h3 className="font-bold text-lg mb-4">
           {room.title}
         </h3>
-
-        {/* رهن و اجاره */}
         <div className="grid grid-cols-2 gap-3">
 
           <div
@@ -197,8 +188,6 @@ const bedroomText =
           </div>
 
         </div>
-
-        {/* تگ ها */}
         <div className="flex flex-wrap gap-2 mt-4">
 
           <div
@@ -243,8 +232,6 @@ const bedroomText =
         </div>
 
         <div className="border-t border-gray-100 my-5"></div>
-
-        {/* پروفایل */}
         <div className="flex items-center justify-between">
 
           <div className="flex items-center gap-3">

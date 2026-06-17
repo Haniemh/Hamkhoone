@@ -15,7 +15,7 @@ export default function PsychologySection({ user, setUser }) {
   };
 
   const cancelEditing = () => {
-    setEditingKey(null); // فقط ویرایش بسته می‌شود، هیچ تغییری در دیتا اعمال نمی‌شود
+    setEditingKey(null);
     setEditValue("");
   };
 
@@ -75,7 +75,7 @@ export default function PsychologySection({ user, setUser }) {
                 ${isEditing ? "bg-blue-50 ring-2 ring-blue-300" : "bg-gray-50 hover:bg-gray-100"}
               `}
             >
-              {/* بخش محتوای اصلی */}
+
               <div className="flex-1">
                 <p className="font-medium">{item.title}</p>
 
@@ -111,7 +111,6 @@ export default function PsychologySection({ user, setUser }) {
                 )}
               </div>
 
-              {/* بخش وضعیت - ترتیب جدید: اول تست، بعد ضربدر */}
               <div className="flex items-center gap-3 mr-4">
                 {hasResult ? (
                   <span className="text-xl font-bold text-green-500">✓</span>

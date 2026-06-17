@@ -2,7 +2,7 @@ import { Home } from "lucide-react";
 
 export default function AdBanner() {
   return (
-    <div className="bg-gradient-to-b from-blue-600 to-blue-500 rounded-[40px] p-8 text-white shadow-lg mb-6">
+    <div className="bg-linear-to-b from-blue-600 to-blue-500 rounded-[40px] p-8 text-white shadow-lg mb-6">
       <div className="flex justify-center mb-4">
         <div className="w-20 h-20 rounded-3xl bg-white/20 flex items-center justify-center">
           <Home size={42} />

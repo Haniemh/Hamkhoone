@@ -79,7 +79,7 @@ export default function AdvancedFilterModal({
         className="
           fixed
           inset-0
-          z-[100]
+          z-100
           bg-black/40
           flex
           items-end
@@ -154,8 +154,6 @@ export default function AdvancedFilterModal({
           </div>
 
           <div className="px-6 pb-8">
-
-            {/* مالی */}
             <div className="mb-8">
 
               <h3 className="text-blue-600 font-medium mb-4">
@@ -208,7 +206,6 @@ export default function AdvancedFilterModal({
 
             </div>
 
-            {/* مشخصات */}
             <div>
 
               <h3 className="text-blue-600 font-medium mb-4">
@@ -238,8 +235,6 @@ export default function AdvancedFilterModal({
                     px-5
                   "
                 />
-
-                {/* چیدمان واحد */}
 
                 <button
                   onClick={() =>
@@ -274,8 +269,6 @@ export default function AdvancedFilterModal({
                      }
                     </span>
                 </button>
-
-                {/* نوع اتاق */}
 
                 <button
                   onClick={() =>

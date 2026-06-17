@@ -20,10 +20,8 @@ export default function AdDetailsSection({
     "w-full bg-[#F3F5F8] rounded-3xl p-5 text-right placeholder:text-right resize-none outline-none";
   return (
     <>
-      {/* اطلاعات اصلی */}
 
       <div className="px-6 py-6">
-
         <div className="flex justify-center mb-6">
           <h2 className="text-blue-600 text-xl font-medium">
             اطلاعات اصلی آگهی
@@ -47,15 +45,10 @@ export default function AdDetailsSection({
             placeholder="تاریخ تخلیه / آمادگی"
             className={inputClass}
           />
-
         </div>
-
       </div>
 
-      {/* درباره اتاق */}
-
       <div className="px-6 py-6">
-
         <textarea
          rows={7}
          value={roomDescription}
@@ -69,8 +62,6 @@ export default function AdDetailsSection({
         </p>
 
       </div>
-
-      {/* درباره محله */}
 
       <div className="px-6 py-6">
 
@@ -87,8 +78,6 @@ export default function AdDetailsSection({
         </p>
 
       </div>
-
-      {/* قیمت */}
 
       <div className="px-6 py-6">
 

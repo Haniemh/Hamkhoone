@@ -44,9 +44,8 @@ export default function BadgesSection({ user, setUser }) {
     <div className="bg-white rounded-[35px] p-5">
       <h2 className="font-bold text-xl mb-5">نشان‌ها</h2>
 
-      {/* دسکتاپ: 2 ستونه */}
       <div className="hidden md:grid md:grid-cols-2 gap-4">
-        {/* تلفن */}
+        {/* Phone Number */}
         <div
           onClick={() => handleBoxClick("phone", phoneValue)}
           className={`
@@ -109,7 +108,7 @@ export default function BadgesSection({ user, setUser }) {
           )}
         </div>
 
-        {/* ایمیل */}
+        {/* E-mail */}
         <div
           onClick={() => handleBoxClick("email", emailValue)}
           className={`
@@ -173,9 +172,8 @@ export default function BadgesSection({ user, setUser }) {
         </div>
       </div>
 
-      {/* موبایل: ستون عمودی با تلفن بالا و ایمیل پایین */}
       <div className="flex flex-col gap-4 md:hidden">
-        {/* تلفن */}
+        {/* Phone Number */}
         <div
           onClick={() => handleBoxClick("phone", phoneValue)}
           className={`
@@ -238,7 +236,7 @@ export default function BadgesSection({ user, setUser }) {
           )}
         </div>
 
-        {/* ایمیل */}
+        {/* E-mail */}
         <div
           onClick={() => handleBoxClick("email", emailValue)}
           className={`

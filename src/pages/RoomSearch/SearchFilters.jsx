@@ -44,7 +44,6 @@ export default function SearchFilters({
 
   return (
     <>
-      {/* موبایل */}
       <div className="lg:hidden bg-white rounded-[28px] p-4 shadow-sm border border-gray-100">
 
         <div className="flex gap-2 mb-3">
@@ -127,7 +126,7 @@ export default function SearchFilters({
                 )
               }
               className={`
-                flex-shrink-0
+                shrink-0
                 h-11
                 px-5
                 rounded-full
@@ -154,7 +153,6 @@ export default function SearchFilters({
 
       </div>
 
-      {/* دسکتاپ */}
       <div
         className="
           hidden
@@ -170,7 +168,6 @@ export default function SearchFilters({
         "
       >
 
-        {/* فیلتر پیشرفته */}
         <button
           onClick={onAdvancedClick}
           className="
@@ -189,8 +186,7 @@ export default function SearchFilters({
           فیلتر پیشرفته
         </button>
 
-        {/* جنسیت */}
-        <div className="w-[220px] h-12 bg-gray-100 rounded-full flex p-1">
+        <div className="w-55 h-12 bg-gray-100 rounded-full flex p-1">
 
           <button
             onClick={() =>
@@ -232,7 +228,6 @@ export default function SearchFilters({
 
         </div>
 
-        {/* فیلترها */}
         <div className="flex gap-2 mr-auto">
 
           {filters.map((filter) => (

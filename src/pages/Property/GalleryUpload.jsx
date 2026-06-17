@@ -14,7 +14,7 @@ export default function GalleryUpload({
           border-dashed
           border-gray-200
           rounded-[35px]
-          min-h-[250px]
+          min-h-62.5
           flex
           flex-col
           items-center

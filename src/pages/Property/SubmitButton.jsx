@@ -9,7 +9,7 @@ export default function SubmitButton({
         mx-auto
         block
         rounded-full
-        bg-gradient-to-r
+        bg-linear-to-r
         from-blue-700
         to-blue-500
         text-white

@@ -9,7 +9,7 @@ export default function AdvancedSelectModal({
 
   return (
     <div
-      className="fixed inset-0 z-[200]"
+      className="fixed inset-0 z-200"
       onClick={onClose}
     >
       <div className="absolute inset-0 bg-black/40" />

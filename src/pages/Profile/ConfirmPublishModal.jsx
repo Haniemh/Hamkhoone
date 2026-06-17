@@ -77,8 +77,6 @@ import {
   
           </div>
   
-          {/* مدت نمایش */}
-  
           <div className="px-6">
   
             <div
@@ -103,15 +101,10 @@ import {
               >
                 ۶۰ روز
               </span>
-  
             </div>
-  
           </div>
-  
-          {/* پیام */}
-  
+
           <div className="p-6">
-  
             <div
               className="
                 bg-purple-50
