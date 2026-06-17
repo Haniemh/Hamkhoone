@@ -39,11 +39,21 @@ export default function RoomSearchPage() {
 };
 
   const rooms = [
-    {
+  {
   id: 1,
-  image: "/images/room1.jpg",
+  title: "هم خونه ی خانم",
+  roomDescription:
+    "یک اتاق بزرگ با نورگیری مناسب...",
+
+  neighborhoodDescription:
+    "محله صادقیه دسترسی عالی به مترو دارد...",
+
   city: "تهران",
   district: "صادقیه",
+  mainImage: "/images/room1.jpg",
+  galleryImages: [
+    "/images/room2.jpg",
+  ],
   bathrooms: 1,
   roommates: 2,
   deposit: "۳۰۰ میلیون",
@@ -60,7 +70,20 @@ export default function RoomSearchPage() {
 },
 {
   id: 2,
-  image: "/images/room1.jpg",
+  mainImage: "/images/room1.jpg",
+  title: "هم خونه ی آقا",
+  roomDescription:
+    "یک اتاق بزرگ با نورگیری خوب...",
+
+  neighborhoodDescription:
+    "محله سعادت آباد دسترسی عالی به مترو دارد...",
+
+  city: "تهران",
+  district: "صادقیه",
+  mainImage: "/images/room1.jpg",
+  galleryImages: [
+    "/images/room2.jpg",
+  ],
   city: "تهران",
   district: "سعادت آباد",
   bathrooms: 1,
@@ -79,7 +102,20 @@ export default function RoomSearchPage() {
 },
 {
   id: 3,
-  image: "/images/room1.jpg",
+  mainImage: "/images/room1.jpg",
+  title: "هم خونه ی خانم",
+  roomDescription:
+    "یک اتاق  با نورگیری مناسب...",
+
+  neighborhoodDescription:
+    "محله صادقیه دسترسی عالی به مترو دارد...",
+
+  city: "تهران",
+  district: "صادقیه",
+  mainImage: "/images/room1.jpg",
+  galleryImages: [
+    "/images/room2.jpg",
+  ],
   city: "تهران",
   district: "صادقیه",
   bathrooms: 2,

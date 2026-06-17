@@ -1,0 +1,481 @@
+import { useLocation } from "react-router-dom";
+import BottomNav from "../BottomNav";
+import { useNavigate } from "react-router-dom";
+
+import {
+  Heart,
+  Calendar,
+  BedDouble,
+  Home,
+  Wallet,
+  Users,
+  Bath,
+  MapPin,
+  RefreshCw,
+} from "lucide-react";
+
+export default function RoomDetails() {
+  const navigate = useNavigate();
+
+  const location = useLocation();
+
+  const labels = {
+  // duration
+  flexible: "قابل انعطاف",
+  fixed: "تمدید ثابت",
+  yearly: "سالانه",
+
+  // mapType
+  full_unit: "کل واحد",
+  private_room: "اتاق اختصاصی",
+  shared_room: "اتاق اشتراکی",
+
+  // unitType
+  apartment: "آپارتمان",
+  villa: "خانه ویلایی",
+  dormitory: "خوابگاه",
+  guesthouse: "مهمانسرا",
+  shared_apartment: "آپارتمان اشتراکی",
+  garden_house: "خانه باغ",
+  basement: "زیرزمین",
+
+  studio: "استودیو",
+  1: "یک خواب",
+  2: "دو خواب",
+  3: "سه خواب",
+  4: "چهار خواب",
+  5: "پنج خواب",
+  6: "شش خواب",
+  7: "هفت خواب",
+};
+
+  const room = location.state?.room;
+
+  if (!room) {
+    return (
+      <div className="p-10 text-center">
+        اطلاعات آگهی پیدا نشد
+      </div>
+    );
+  }
+
+  return (
+    <div
+      dir="rtl"
+      className="
+        min-h-screen
+        bg-white
+        text-gray-900
+        p-8
+        pt-28
+      "
+    >
+      <div
+        className="
+          max-w-7xl
+          mx-auto
+          grid
+          grid-cols-12
+          gap-8
+        "
+      >
+      <div 
+        className="
+         col-span-8
+         bg-white
+         border
+         border-gray-200
+         rounded-[40px]
+         p-6
+         shadow-sm
+        "
+      >
+
+          <img
+            src={room.mainImage}
+            alt=""
+            className="
+              w-full
+              h-[600px]
+              rounded-[30px]
+              object-cover
+            "
+          />
+
+          <div className="flex gap-4 mt-4">
+
+            {room.galleryImages?.map(
+              (img, index) => (
+                <img
+                  key={index}
+                  src={img}
+                  alt=""
+                  className="
+                    w-32
+                    h-24
+                    rounded-2xl
+                    object-cover
+                  "
+                />
+              )
+            )}
+
+          </div>
+          
+        <div className="mt-8">
+          <h3 className="text-2xl font-bold">
+             درباره اتاق
+         </h3>
+         
+        <p className="text-gray-400 text-sm mt-2 mb-4">
+           توضیحات صاحب آگهی
+        </p>
+        
+        <div
+         className="
+          bg-gray-50
+          border
+          border-gray-200
+          rounded-[24px]
+          p-5
+          "
+        >
+          <p className="leading-8 text-gray-600">
+            {room.roomDescription}
+          </p>
+          
+        </div>
+          </div>
+
+          <div className="mt-8">
+          <h3 className="text-2xl font-bold">
+              درباره محله
+         </h3>
+         
+        <p className="text-gray-400 text-sm mt-2 mb-4">
+           اطلاعات محیط و محله
+        </p>
+        
+        <div
+         className="
+          bg-gray-50
+          border
+          border-gray-200
+          rounded-[24px]
+          p-5
+          "
+        >
+          <p className="leading-8 text-gray-600">
+            {room.neighborhoodDescription}
+          </p>
+          
+        </div>
+          </div>
+
+        </div>
+        <div
+         className="
+          col-span-4
+          bg-white
+          border
+          border-gray-200
+          rounded-[40px]
+          p-6
+         shadow-sm
+         "
+        >
+        
+        <button
+          onClick={() => navigate("/favorite-rooms")}
+          className="
+          w-12 h-12
+          rounded-2xl
+          border border-gray-200
+          flex items-center justify-center
+        "
+        >
+          <Heart size={20}/>
+        </button>
+
+          <div
+            className="
+              bg-white
+              text-gray-900
+              rounded-[30px]
+              p-6
+            "
+          >
+            <div className="p-2">
+              
+              
+        <h1 className="text-4xl font-bold text-center mb-6">
+          {room.title}
+        </h1>
+
+  {/* map type */}
+      <div className="flex justify-center mb-4">
+         <div
+           className="
+           inline-flex
+           items-center
+           gap-2
+           bg-blue-50
+           text-blue-700
+           px-10
+           py-3
+           rounded-2xl
+           text-sm
+           font-medium
+           h-11
+           "
+         >
+          {labels[room.mapType]}
+        </div>
+      </div>
+      
+      <div className="flex justify-center mb-4">
+        <div
+          className="
+           inline-flex
+           items-center
+           gap-2
+           bg-blue-50
+           text-blue-700
+           px-20
+           py-3
+           rounded-2xl
+           text-sm
+           font-medium
+           h-12
+          "
+        >
+          <Calendar size={16} />
+           {room.date}
+        </div>
+      </div>
+
+  {/* unit + bedrooms */}
+     <div className="grid grid-cols-2 gap-3 mb-5">
+       <div
+        className="
+        border-2
+        border-black
+        rounded-2xl
+        h-12
+        flex
+        items-center
+        justify-center
+        gap-2
+      "
+      >
+      <Home size={18} />
+      {labels[room.unitType]}
+     </div>
+     
+      <div
+       className="
+       border-2
+       border-black
+       rounded-2xl
+       h-12
+       flex
+       items-center
+       justify-center
+       gap-2
+      "
+      >
+        <BedDouble size={18} />
+        {room.bedrooms} خواب
+      </div>
+
+    </div>
+
+  {/* rent */}
+    <div className="flex justify-center mb-4">
+      <div
+      className="
+      bg-green-50
+      inline-flex
+      items-center
+      gap-2
+      text-green-700
+      px-20
+      py-3
+      rounded-2xl
+      text-sm
+      font-medium
+      h-12
+      border
+      border-green-200
+    "
+    >
+      <Wallet size={18} />
+      <span >
+         ماهانه {room.rent}
+      </span>
+      </div>
+    </div>
+
+  {/* deposit */}
+  <div className="flex justify-center mb-4">
+     <div
+      className="
+      bg-green-50
+      inline-flex
+      items-center
+      gap-1
+      text-green-700
+      px-16
+      py-3
+      rounded-2xl
+      text-sm
+      font-medium
+      h-12
+      border
+      border-green-200
+    "
+    >
+      <Wallet size={18} />
+       <span>
+         رهن {room.deposit}
+      </span>
+    </div>
+   </div>
+  {/* roommates + bath */}
+   <div className="grid grid-cols-2 gap-3 mb-4">
+
+    <div
+      className="
+       bg-gray-100
+      rounded-2xl
+      p-3
+      flex
+      items-center
+      justify-center
+      gap-2
+      "
+    >
+      <Users size={18} />
+      {room.roommates} هم‌اتاقی
+    </div>
+
+    <div
+      className="
+        bg-gray-100
+      rounded-2xl
+      p-3
+      flex
+      items-center
+      justify-center
+      gap-2
+      "
+    >
+      <Bath size={18} />
+      {room.bathrooms} سرویس
+    </div>
+
+  </div>
+
+  {/* duration */}
+  <div className="flex justify-center mb-4">
+   <div
+     className="
+     inline-flex
+     items-center
+     gap-2
+     bg-gray-100
+     rounded-2xl
+     px-6
+     py-3
+     text-sm
+     font-medium
+     h-12
+    "
+    >
+     <RefreshCw size={18} />
+       {labels[room.duration]}
+     </div>
+    </div>
+  {/* location */}
+
+   <div className="flex justify-center mb-4">
+    <div
+      className="
+      inline-flex
+      items-center
+      gap-2
+      bg-gray-100
+      rounded-2xl
+      px-6
+      py-3
+      text-sm
+      font-medium
+      h-12
+    "
+  >
+    <MapPin size={18} className="text-red-500" />
+    {room.city} ، {room.district}
+  </div>
+</div>
+</div>
+</div>
+
+
+          {/* صاحب آگهی */}
+
+    <div className="border-t border-gray-200 mt-6 pt-6">
+       <div
+          className="
+           bg-gray-50
+           border
+           border-gray-200
+           rounded-[24px]
+           p-6
+           text-center
+          "
+        >
+        <img
+         src={room.ownerImage}
+         alt=""
+         className="
+         w-24
+         h-24
+         rounded-full
+         mx-auto
+         object-cover
+        "
+      />
+
+      <h3 className="mt-4 text-2xl">
+       {room.owner}
+      </h3>
+
+      <p className="text-gray-400 mt-2">
+        {room.gender === "male"
+            ? "آقا"
+            : "خانم"}{" "}
+          • {room.age} ساله
+      </p>
+
+      <button
+        className="
+        mt-6
+        w-full
+        h-14
+        rounded-2xl
+        border
+        border-blue-500
+        text-blue-400
+       "
+      >
+        ارسال درخواست چت
+     </button>
+    </div>
+       </div>
+        </div>
+
+      </div>
+      <BottomNav />
+    </div>
+  );
+}
