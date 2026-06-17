@@ -103,7 +103,7 @@ export default function RoomSearchPage() {
 {
   id: 3,
   mainImage: "/images/room1.jpg",
-  title: "هم خونه ی خانم",
+  title: "همخونه خانم",
   roomDescription:
     "یک اتاق  با نورگیری مناسب...",
 
@@ -115,6 +115,8 @@ export default function RoomSearchPage() {
   mainImage: "/images/room1.jpg",
   galleryImages: [
     "/images/room2.jpg",
+    "/images/room3.jpg",
+    "/images/room4.jpg",
   ],
   city: "تهران",
   district: "صادقیه",

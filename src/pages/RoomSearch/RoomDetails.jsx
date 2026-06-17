@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import BottomNav from "../BottomNav";
 import { useNavigate } from "react-router-dom";
 
+
 import {
   Heart,
   Calendar,
@@ -67,7 +68,9 @@ export default function RoomDetails() {
         bg-white
         text-gray-900
         p-8
-        pt-28
+        md:p-8
+        pt-24
+        md:pt-28
       "
     >
       <div
@@ -75,13 +78,14 @@ export default function RoomDetails() {
           max-w-7xl
           mx-auto
           grid
-          grid-cols-12
+          grid-cols-1
+          md:grid-cols-12
           gap-8
         "
       >
       <div 
         className="
-         col-span-8
+         md:col-span-8
          bg-white
          border
          border-gray-200
@@ -96,13 +100,14 @@ export default function RoomDetails() {
             alt=""
             className="
               w-full
-              h-[600px]
+              h-64
+              md:h-[600px]
               rounded-[30px]
               object-cover
             "
           />
 
-          <div className="flex gap-4 mt-4">
+          <div className="flex overflow-x-auto gap-4 mt-4">
 
             {room.galleryImages?.map(
               (img, index) => (
@@ -123,11 +128,11 @@ export default function RoomDetails() {
           </div>
           
         <div className="mt-8">
-          <h3 className="text-2xl font-bold">
+          <h3 className="text-2xl  text-right">
              درباره اتاق
          </h3>
          
-        <p className="text-gray-400 text-sm mt-2 mb-4">
+        <p className="text-gray-400 text-sm mt-2 mb-4 text-right">
            توضیحات صاحب آگهی
         </p>
         
@@ -140,7 +145,7 @@ export default function RoomDetails() {
           p-5
           "
         >
-          <p className="leading-8 text-gray-600">
+          <p className="leading-8 text-gray-600 whitespace-pre-line">
             {room.roomDescription}
           </p>
           
@@ -148,7 +153,7 @@ export default function RoomDetails() {
           </div>
 
           <div className="mt-8">
-          <h3 className="text-2xl font-bold">
+          <h3 className="text-2xl ">
               درباره محله
          </h3>
          
@@ -165,7 +170,7 @@ export default function RoomDetails() {
           p-5
           "
         >
-          <p className="leading-8 text-gray-600">
+          <p className="leading-8 text-gray-600 whitespace-pre-line">
             {room.neighborhoodDescription}
           </p>
           
@@ -175,7 +180,7 @@ export default function RoomDetails() {
         </div>
         <div
          className="
-          col-span-4
+          md:col-span-4
           bg-white
           border
           border-gray-200
@@ -208,7 +213,7 @@ export default function RoomDetails() {
             <div className="p-2">
               
               
-        <h1 className="text-4xl font-bold text-center mb-6">
+        <h1 className="text-3xl md:text-4xl text-center mb-6">
           {room.title}
         </h1>
 
@@ -346,17 +351,19 @@ export default function RoomDetails() {
 
     <div
       className="
-       bg-gray-100
+      bg-gray-100
       rounded-2xl
       p-3
       flex
       items-center
       justify-center
-      gap-2
+      gap-1
+      text-xs
+      whitespace-nowrap
       "
     >
-      <Users size={18} />
-      {room.roommates} هم‌اتاقی
+      <Users size={18} className="text-blue-500 shrink-0" />
+       <span>{room.roommates} هم‌اتاقی</span>
     </div>
 
     <div
@@ -368,6 +375,8 @@ export default function RoomDetails() {
       items-center
       justify-center
       gap-2
+      text-xs
+      whitespace-nowrap
       "
     >
       <Bath size={18} />
@@ -475,6 +484,16 @@ export default function RoomDetails() {
         </div>
 
       </div>
+
+      <div className="
+      bg-white
+      rounded-[40px]
+      shadow-sm
+      overflow-hidden
+      mb-24"
+    >
+    </div>
+
       <BottomNav />
     </div>
   );
