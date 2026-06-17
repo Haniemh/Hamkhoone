@@ -28,13 +28,13 @@ export default function SelectionModal({
 
   // bedrooms
    studio: "استودیو",
-   one: "یک خواب",
-   two: "دو خواب",
-   three: "سه خواب",
-   four: "چهار خواب",
-   five: "پنج خواب",
-   six: "شش خواب",
-   seven: "هفت خواب",
+   1: "یک خواب",
+   2: "دو خواب",
+   3: "سه خواب",
+   4: "چهار خواب",
+   5: "پنج خواب",
+   6: "شش خواب",
+   7: "هفت خواب",
 };
   if (!activeModal || !options) return null;
 

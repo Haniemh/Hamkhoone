@@ -257,7 +257,7 @@ const bedroomText =
           <div className="flex items-center gap-3">
 
             <img
-              src={room.ownerImage}
+              src={room.profileImage}
               alt=""
               className="
                 w-12
@@ -270,7 +270,7 @@ const bedroomText =
             <div>
 
               <p className="font-semibold text-sm">
-                {room.owner}
+                {room.fullName}
               </p>
 
               <p className="text-xs text-gray-400 mt-1">

@@ -150,21 +150,20 @@ export default function RoomDetails() {
 
           <div className="flex overflow-x-auto gap-4 mt-4">
 
-            {room.galleryImages?.map(
-              (img, index) => (
-                <img
-                  key={index}
-                  src={img}
-                  alt=""
-                  className="
-                    w-32
-                    h-24
-                    rounded-2xl
-                    object-cover
-                  "
-                />
-              )
-            )}
+            {Array.isArray(room.galleryImages) &&
+      room.galleryImages.map((img, index) => (
+    <img
+      key={index}
+      src={img}
+      alt=""
+      className="
+        w-32
+        h-24
+        rounded-2xl
+        object-cover
+      "
+    />
+))}
 
           </div>
           
@@ -488,7 +487,7 @@ export default function RoomDetails() {
           "
         >
         <img
-         src={room.ownerImage}
+         src={room.profileImage}
          alt=""
          className="
          w-24
@@ -500,7 +499,7 @@ export default function RoomDetails() {
       />
 
       <h3 className="mt-4 text-2xl">
-       {room.owner}
+       {room.fullName}
       </h3>
 
       <p className="text-gray-400 mt-2">

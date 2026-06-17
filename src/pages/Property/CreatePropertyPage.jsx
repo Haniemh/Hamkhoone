@@ -87,8 +87,56 @@ export default function CreatePropertyAd() {
    "propertyPublished",
    "true"
 );
+ localStorage.removeItem("myRooms");
+  const newRoom = {
+  id: 1,
 
-  navigate("/Profile");
+  title,
+  roomDescription,
+  neighborhoodDescription,
+
+  city,
+  district,
+
+  bathrooms: bathroomsCount,
+  roommates: roommatesCount,
+
+  deposit,
+  rent,
+
+  mapType,
+  bedrooms,
+  unitType,
+
+  duration,
+
+  mainImage: "/images/room1.jpg",
+  galleryImages: [
+    "/images/room2.jpg",
+    "/images/room3.jpg",
+    "/images/room4.jpg",
+  ],
+
+  fullName: "زهرا محمدی",
+  gender: "female",
+  age: 25,
+
+  ProfileImage: "/images/default-female.png",
+
+  date: "1405/03/02",
+};
+
+const myRooms =
+  JSON.parse(localStorage.getItem("myRooms")) || [];
+
+myRooms.push(newRoom);
+
+localStorage.setItem(
+  "myRooms",
+  JSON.stringify(myRooms)
+);
+
+  navigate("/my-rooms");
 };
 
   const [errorMessage, setErrorMessage] = useState("");
