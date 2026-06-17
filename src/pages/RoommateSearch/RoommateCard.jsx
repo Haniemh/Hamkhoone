@@ -52,7 +52,7 @@ export default function RoommateCard({ roommate }) {
         {/* اطلاعات مالی - باکس‌های جداگانه */}
         <div className="grid grid-cols-2 gap-2 mb-3">
           {/* اجاره ماهانه */}
-          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-3 border border-indigo-200">
+          <div className="bg-linear-to-br from-indigo-50 to-indigo-100 rounded-xl p-3 border border-indigo-200">
             <p className="text-xs text-indigo-600 font-medium">اجاره ماهانه</p>
             <p className="font-bold text-indigo-700 text-sm mt-1">
               {formatPrice(roommate.rentBudget)} تومان
@@ -60,7 +60,7 @@ export default function RoommateCard({ roommate }) {
           </div>
 
           {/* بودجه کل */}
-          <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-3 border border-emerald-200">
+          <div className="bg-linear-to-br from-emerald-50 to-emerald-100 rounded-xl p-3 border border-emerald-200">
             <p className="text-xs text-emerald-600 font-medium">بودجه کل</p>
             <p className="font-bold text-emerald-700 text-sm mt-1">
               {formatPrice(roommate.depositBudget)} تومان
