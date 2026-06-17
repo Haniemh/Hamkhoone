@@ -64,8 +64,6 @@ export default function ProfileInfoCard({ user, setUser }) {
     "طبیعت‌دوست",
   ];
 
-  const cities = ["تهران", "اصفهان", "شیراز", "مشهد", "تبریز", "کرج", "رشت", "یزد"];
-
   const addTag = (tag) => {
     if (!user.tags.includes(tag)) {
       setUser({
@@ -84,10 +82,6 @@ export default function ProfileInfoCard({ user, setUser }) {
 
   return (
     <div className="bg-white rounded-[35px] shadow-sm overflow-hidden">
-      {/* Header */}
-      <div className="flex justify-end items-center p-4">
-        <Bell />
-      </div>
 
       {/* Avatar */}
       <div className="text-center p-6">

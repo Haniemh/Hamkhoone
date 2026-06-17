@@ -170,7 +170,7 @@ export default function RoommateDetailPage() {
 
   if (!roommate) {
     return (
-      <div dir="rtl" className="min-h-screen bg-[#f5f6fa] flex items-center justify-center">
+      <div dir="rtl" className="min-h-screen bg-[#f5f6fa] flex items-center justify-center md:pt-16">
         <div className="text-center">
           <p className="text-gray-500 text-lg">کاربری با این شناسه پیدا نشد</p>
           <button
@@ -213,7 +213,7 @@ export default function RoommateDetailPage() {
   };
 
   return (
-    <div dir="rtl" className="min-h-screen bg-[#f5f6fa]">
+    <div dir="rtl" className="min-h-screen bg-[#f5f6fa] md:pt-16">
       <div className="max-w-7xl mx-auto p-4 space-y-6 pb-32">
         <button
           onClick={() => navigate(-1)}

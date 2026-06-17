@@ -258,7 +258,7 @@ export default function RoommateSearchPage() {
   };
 
   return (
-    <div dir="rtl" className="min-h-screen bg-[#f5f6fa]">
+    <div dir="rtl" className="min-h-screen bg-[#f5f6fa] md:pt-16">
       <div className="max-w-7xl mx-auto p-4 sm:p-6 pb-32">
         <h1 className="text-2xl font-bold mb-4">جستجوی هم‌اتاقی</h1>
 

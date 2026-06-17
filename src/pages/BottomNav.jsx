@@ -39,7 +39,7 @@ export default function BottomNav() {
 
   return (
     <>
-      {/* SmartPhone */}صفحه 
+      {/* SmartPhone */} 
       <div className="md:hidden fixed bottom-4 left-4 right-4 max-w-md mx-auto bg-white rounded-[30px] shadow-xl p-4 z-50">
         <div className="flex justify-around items-end">
           {tabs.map((tab) => {
