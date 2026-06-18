@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 
 import SearchFilters from "../../RoomSearch/SearchFilters";
 import AdvancedFilterModal from "../../RoomSearch/AdvancedFilterModal";
-import RoomCard from "../../RoomSearch/RoomCard";
-
+import RoomCard from "./myRoomCard";
 import BottomNav from "../../BottomNav";
 
 
@@ -21,6 +20,7 @@ export default function FavoritePage() {
     mapType: "",
     unitType: "",
   });
+
   const [draftFilters, setDraftFilters] =
   useState({
     maxRent: "",
@@ -29,6 +29,7 @@ export default function FavoritePage() {
     mapType: "",
     unitType: "",
   });
+
   const bedroomValue = {
   studio: 0,
   1: 1,
@@ -68,7 +69,7 @@ useEffect(() => {
 
   let filteredRooms = [...rooms];
 
-  // فیلتر جنسیت
+  
   if (gender) {
     filteredRooms = filteredRooms.filter(
       (room) => room.gender === gender

@@ -12,6 +12,7 @@ import RoommateSearchPage from "./pages/RoommateSearch/RoommateSearchPage";
 import RoomSearchPage from "./pages/RoomSearch/RoomSearchPage";
 import CreatePropertAd from "./pages/Property/CreatePropertyPage";
 import RoomDetails from "./pages/RoomSearch/RoomDetails";
+import MyRoomDetails from "./pages/Profile/MyRoomsPage/myRoomDetails";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/room-search" element={<RoomSearchPage />} />
         <Route path="/create-property" element={<CreatePropertAd />} />
         <Route path="/room-search/:id" element={<RoomDetails />} />
+        <Route path="/my-rooms/:id" element={<MyRoomDetails />} />
       </Routes>
     </BrowserRouter>
   );
