@@ -174,6 +174,7 @@ const galleryImagesBase64 =
   profileImage:"/images/default-female.png",
 
   date: new Date().toLocaleDateString("fa-IR"),
+  createdByMe: true,
 };
 
  const myRooms =
@@ -248,11 +249,10 @@ const galleryImagesBase64 =
    { value: "studio", label: "استودیو" },
   ];
 
-
 return (
   <div
     dir="rtl"
-    className="min-h-screen bg-[#F6F7FB] py-6 px-4"
+    className="min-h-screen bg-[#F6F7FB] py-6 px-4 pb-32 md:pt-30"
   >
     <div className="max-w-4xl mx-auto">
 

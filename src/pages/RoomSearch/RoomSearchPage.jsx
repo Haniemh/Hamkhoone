@@ -37,8 +37,8 @@ export default function RoomSearchPage() {
   6: 6,
   7: 7,
 };
-
-  const rooms = [
+  const myRooms = JSON.parse(localStorage.getItem("myRooms")) || [];
+  const  defaultRooms= [
   {
   id: 1,
   title: "هم خونه ی خانم",
@@ -67,6 +67,7 @@ export default function RoomSearchPage() {
   duration: "yearly",
   profileImage: "/images/default-female.png",
   date: "1405/01/01",
+  createdByMe: false,
 },
 {
   id: 2,
@@ -99,6 +100,7 @@ export default function RoomSearchPage() {
   duration: "fixed",
   profileImage: "/images/default-female.png",
   date: "1405/02/01",
+  createdByMe: false,
 },
 {
   id: 3,
@@ -133,9 +135,13 @@ export default function RoomSearchPage() {
   duration: "flexible",
   profileImage: "/images/default-female.png",
   date: "1405/03/01",
+  createdByMe: false,
 }
   ];
-
+const rooms = [
+  ...myRooms,
+  ...defaultRooms,
+];
   const getNumber = (value) =>
     Number(
       value

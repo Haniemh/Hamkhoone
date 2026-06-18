@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import SearchFilters from "../../RoomSearch/SearchFilters";
 import AdvancedFilterModal from "../../RoomSearch/AdvancedFilterModal";
-import RoomCard from "./myRoomCard";
+import RoomCard from "../../RoomSearch/RoomCard";
 import BottomNav from "../../BottomNav";
 
 

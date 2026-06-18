@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 
 import {
   Heart,
+  Pencil,
   Calendar,
   BedDouble,
   Home,
@@ -52,8 +53,10 @@ export default function RoomDetails() {
 };
 
   const room = location.state?.room;
+  const isMyRoom = room?.createdByMe;
 
   const [isFavorite, setIsFavorite] = useState(false);
+  const [deleteMode, setDeleteMode] = useState(false);
 
   useEffect(() => {
     const favorites =
@@ -230,20 +233,43 @@ export default function RoomDetails() {
          "
         >
         
-        <button
-          onClick={toggleFavorite}
+        {isMyRoom ? (
+           <button
+             onClick={() =>
+              navigate("/create-property", {
+                state: {
+                  editMode: true,
+                  room,
+                },
+              })
+          }
           className="
-          w-12 h-12
-          rounded-2xl
-          border border-gray-200
-          flex items-center justify-center
-        "
-        >
-          <Heart size={20}
-            fill={isFavorite ? "red" : "none"}
-            color={isFavorite ? "red" : "currentColor"}
-          />
-        </button>
+           w-12 h-12
+           rounded-2xl
+           border border-gray-200
+           flex items-center justify-center
+          "
+          >
+          <Pencil size={20} />
+         </button>
+          ) 
+          : (
+           <button
+            onClick={toggleFavorite}
+            className="
+             w-12 h-12
+             rounded-2xl
+             border border-gray-200
+             flex items-center justify-center
+            "
+            >
+            <Heart
+             size={20}
+             fill={isFavorite ? 'red' : 'none'}
+             color={isFavorite ? 'red' : 'currentColor'}
+            />
+            </button>
+          )}
 
           <div
             className="
@@ -509,19 +535,36 @@ export default function RoomDetails() {
           • {room.age} ساله
       </p>
 
-      <button
-        className="
-        mt-6
-        w-full
-        h-14
-        rounded-2xl
-        border
-        border-blue-500
-        text-blue-400
-       "
-      >
-        ارسال درخواست چت
-     </button>
+      {isMyRoom ? (
+  <button
+    onClick={() => setDeleteMode(true)}
+    className="
+      mt-6
+      w-full
+      h-14
+      rounded-2xl
+      border
+      border-red-500
+      text-red-500
+    "
+  >
+    حذف آگهی
+  </button>
+) : (
+  <button
+    className="
+      mt-6
+      w-full
+      h-14
+      rounded-2xl
+      border
+      border-blue-500
+      text-blue-400
+    "
+  >
+    ارسال درخواست چت
+  </button>
+)}
     </div>
        </div>
         </div>
@@ -536,7 +579,80 @@ export default function RoomDetails() {
       mb-24"
     >
     </div>
+      {deleteMode && (
+  <div
+    className="
+      fixed inset-0
+      bg-black/40
+      flex items-center justify-center
+      z-50
+    "
+  >
+    <div
+      className="
+        bg-white
+        rounded-3xl
+        p-6
+        w-[320px]
+        text-center
+      "
+    >
+      <h3 className="text-lg mb-4">
+        حذف آگهی
+      </h3>
 
+      <p className="text-gray-500 mb-6">
+        مطمئنی میخوای این آگهی حذف بشه؟
+      </p>
+
+      <div className="flex gap-3">
+        <button
+          className="
+            flex-1
+            bg-red-500
+            text-white
+            py-3
+            rounded-2xl
+          "
+          onClick={() => {
+            const rooms =
+              JSON.parse(
+                localStorage.getItem("myRooms")
+              ) || [];
+
+            const updated =
+              rooms.filter(
+                (item) => item.id !== room.id
+              );
+
+            localStorage.setItem(
+              "myRooms",
+              JSON.stringify(updated)
+            );
+
+            navigate("/my-rooms");
+          }}
+        >
+          حذف
+        </button>
+
+        <button
+          className="
+            flex-1
+            border
+            py-3
+            rounded-2xl
+          "
+          onClick={() =>
+            setDeleteMode(false)
+          }
+        >
+          انصراف
+        </button>
+      </div>
+    </div>
+  </div>
+)}
       <BottomNav />
     </div>
   );
