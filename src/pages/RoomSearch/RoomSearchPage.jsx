@@ -37,13 +37,23 @@ export default function RoomSearchPage() {
   6: 6,
   7: 7,
 };
-
-  const rooms = [
-    {
+  const myRooms = JSON.parse(localStorage.getItem("myRooms")) || [];
+  const  defaultRooms= [
+  {
   id: 1,
-  image: "/images/room1.jpg",
+  title: "هم خونه ی خانم",
+  roomDescription:
+    "یک اتاق بزرگ با نورگیری مناسب...",
+
+  neighborhoodDescription:
+    "محله صادقیه دسترسی عالی به مترو دارد...",
+
   city: "تهران",
   district: "صادقیه",
+  mainImage: "/images/room1.jpg",
+  galleryImages: [
+    "/images/room2.jpg",
+  ],
   bathrooms: 1,
   roommates: 2,
   deposit: "۳۰۰ میلیون",
@@ -51,16 +61,30 @@ export default function RoomSearchPage() {
   mapType: "full_unit",
   bedrooms: 2,
   unitType: "apartment",
-  owner: "زهرا محمدی",
+  fullName: "زهرا محمدی",
   gender: "female",
   age: 30,
   duration: "yearly",
-  ownerImage: "/images/default-female.png",
+  profileImage: "/images/default-female.png",
   date: "1405/01/01",
+  createdByMe: false,
 },
 {
   id: 2,
-  image: "/images/room1.jpg",
+  mainImage: "/images/room1.jpg",
+  title: "هم خونه ی آقا",
+  roomDescription:
+    "یک اتاق بزرگ با نورگیری خوب...",
+
+  neighborhoodDescription:
+    "محله سعادت آباد دسترسی عالی به مترو دارد...",
+
+  city: "تهران",
+  district: "صادقیه",
+  mainImage: "/images/room1.jpg",
+  galleryImages: [
+    "/images/room2.jpg",
+  ],
   city: "تهران",
   district: "سعادت آباد",
   bathrooms: 1,
@@ -70,16 +94,32 @@ export default function RoomSearchPage() {
   mapType: "private_room",
   bedrooms: 1,
   unitType: "apartment",
-  owner: "علی رضایی",
+  fullName: "علی رضایی",
   gender: "male",
   age: 27,
   duration: "fixed",
-  ownerImage: "/images/default-female.png",
+  profileImage: "/images/default-female.png",
   date: "1405/02/01",
+  createdByMe: false,
 },
 {
   id: 3,
-  image: "/images/room1.jpg",
+  mainImage: "/images/room1.jpg",
+  title: "همخونه خانم",
+  roomDescription:
+    "یک اتاق  با نورگیری مناسب...",
+
+  neighborhoodDescription:
+    "محله صادقیه دسترسی عالی به مترو دارد...",
+
+  city: "تهران",
+  district: "صادقیه",
+  mainImage: "/images/room1.jpg",
+  galleryImages: [
+    "/images/room2.jpg",
+    "/images/room3.jpg",
+    "/images/room4.jpg",
+  ],
   city: "تهران",
   district: "صادقیه",
   bathrooms: 2,
@@ -89,15 +129,19 @@ export default function RoomSearchPage() {
   mapType: "full_unit",
   bedrooms: 3,
   unitType: "villa",
-  owner: "زهرا احمدی",
+  fullName: "زهرا احمدی",
   gender: "female",
   age: 30,
   duration: "flexible",
-  ownerImage: "/images/default-female.png",
+  profileImage: "/images/default-female.png",
   date: "1405/03/01",
+  createdByMe: false,
 }
   ];
-
+const rooms = [
+  ...myRooms,
+  ...defaultRooms,
+];
   const getNumber = (value) =>
     Number(
       value

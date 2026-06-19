@@ -45,13 +45,13 @@ const durationLabels = {
 
 const bedroomLabels = {
   studio: "استودیو",
-  one: "یک خواب",
-  two: "دو خواب",
-  three: "سه خواب",
-  four: "چهار خواب",
-  five: "پنج خواب",
-  six: "شش خواب",
-  seven: "هفت خواب",
+  1: "یک خواب",
+  2: "دو خواب",
+  3: "سه خواب",
+  4: "چهار خواب",
+  5: "پنج خواب",
+  6: "شش خواب",
+  7: "هفت خواب",
 };
   const inputClass =
     "w-full h-16 bg-[#F3F5F8] rounded-3xl pr-5";

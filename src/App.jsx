@@ -11,6 +11,8 @@ import RequestPage from "./pages/Request/RequestPage";
 import RoommateSearchPage from "./pages/RoommateSearch/RoommateSearchPage";
 import RoommateDetailPage from "./pages/RoommateSearch/RoommateDetailPage";
 import RoomSearchPage from "./pages/RoomSearch/RoomSearchPage";
+import CreatePropertAd from "./pages/Property/CreatePropertyPage";
+import RoomDetails from "./pages/RoomSearch/RoomDetails";
 
 function App() {
   return (
@@ -27,6 +29,9 @@ function App() {
         <Route path="/roommate-search" element={<RoommateSearchPage />} />
         <Route path="/roommate-search/:id" element={<RoommateDetailPage />} />
         <Route path="/room-search" element={<RoomSearchPage />} />
+        <Route path="/room-search" element={<RoomSearchPage />} />
+        <Route path="/create-property" element={<CreatePropertAd />} />
+        <Route path="/room-search/:id" element={<RoomDetails />} />
       </Routes>
     </BrowserRouter>
   );

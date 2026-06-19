@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import AdBanner from "./AdBanner";
 import FeaturesSection from "./FeaturesSection";
@@ -13,24 +13,63 @@ import BottomNav from "../BottomNav";
 export default function CreatePropertyAd() {
   const navigate = useNavigate();
 
-  const [title, setTitle] = useState("");
-  const [readyDate, setReadyDate] = useState("");
+  const location = useLocation();
 
-  const [roomDescription, setRoomDescription] = useState("");
-  const [neighborhoodDescription, setNeighborhoodDescription] = useState("");
+  const editMode = location.state?.editMode || false;
 
-  const [rent, setRent] = useState("");
-  const [deposit, setDeposit] = useState("");
+  const editingRoom = location.state?.room || null;
 
-  const [city, setCity] = useState("");
-  const [district, setDistrict] = useState("");
+  const [title, setTitle] = useState(
+  editingRoom?.title || ""
+);
 
-  const [roommatesCount, setRoommatesCount] = useState("");
-  const [bathroomsCount, setBathroomsCount] = useState("");
+  const [readyDate, setReadyDate] = useState(editingRoom?.date || "");
+
+  const [roomDescription, setRoomDescription] = useState(editingRoom?.roomDescription || "");
+  
+  const [ neighborhoodDescription,setNeighborhoodDescription,] = useState(
+    editingRoom?.neighborhoodDescription || "");
+
+  const [rent, setRent] = useState(editingRoom?.rent || "");
+
+  const [deposit, setDeposit] = useState(editingRoom?.deposit || "");
+
+  const [city, setCity] = useState(editingRoom?.city || "");
+
+  const [district, setDistrict] = useState(editingRoom?.district || "");
+
+  const [roommatesCount, setRoommatesCount] =useState(editingRoom?.roommates || "");
+
+  const [bathroomsCount, setBathroomsCount] =useState(editingRoom?.bathrooms || "" );
+
+  const [mainImage, setMainImage] =useState(editingRoom?.mainImage || null);
+
+  const [galleryImages, setGalleryImages] =useState(editingRoom?.galleryImages || []);
+
+  const [mapType, setMapType] = useState(editingRoom?.mapType || "");
+
+  const [unitType, setUnitType] = useState(editingRoom?.unitType || "");
+
+  const [duration, setDuration] = useState(editingRoom?.duration || "");
+
+  const [bedrooms, setBedrooms] = useState(editingRoom?.bedrooms || "");
 
   const isPersian = (text) => { return /^[\u0600-\u06FF\s0-9]+$/.test(text);};
 
-  const handleSubmit = () => {
+  const fileToBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onload = () =>
+      resolve(reader.result);
+
+    reader.onerror = (error) =>
+      reject(error);
+  });
+
+  const handleSubmit =  async () => {
 
   setErrorMessage("");
 
@@ -88,13 +127,88 @@ export default function CreatePropertyAd() {
    "true"
 );
 
-  navigate("/Profile");
+
+  const mainImageBase64 =
+  typeof mainImage === "string"
+    ? mainImage
+    : await fileToBase64(mainImage);
+
+const galleryImagesBase64 =
+  await Promise.all(
+    galleryImages.map((img) =>
+      typeof img === "string"
+        ? img
+        : fileToBase64(img)
+    )
+  );
+
+  const newRoom = {
+  id: Date.now(),
+
+  title,
+  roomDescription,
+  neighborhoodDescription,
+
+  city,
+  district,
+
+  bathrooms: bathroomsCount,
+  roommates: roommatesCount,
+
+  deposit,
+  rent,
+
+  mapType,
+  bedrooms,
+  unitType,
+
+  duration,
+
+  mainImage: mainImageBase64,
+  galleryImages: galleryImagesBase64 ,
+
+  fullName : "زهرا احمدی",
+  gender : "female",
+  age : "30",
+
+  profileImage:"/images/default-female.png",
+
+  date: new Date().toLocaleDateString("fa-IR"),
+  createdByMe: true,
+};
+
+ const myRooms =
+  JSON.parse(localStorage.getItem("myRooms")) || [];
+  
+  if (editMode) {
+     const updatedRooms =
+      myRooms.map((item) =>
+      item.id === editingRoom.id
+        ? {
+            ...newRoom,
+            id: editingRoom.id,
+          }
+        : item
+      );
+      localStorage.setItem(
+        "myRooms",
+        JSON.stringify(updatedRooms)
+      );
+    } 
+    else {
+      myRooms.push({...newRoom,id: Date.now(),});
+
+    localStorage.setItem(
+      "myRooms",
+      JSON.stringify(myRooms)
+    );
+  }
+
+  navigate("/my-rooms");
 };
 
   const [errorMessage, setErrorMessage] = useState("");
 
-  const [mainImage, setMainImage] = useState(null);
-  const [galleryImages, setGalleryImages] = useState([]);
 
   const [activeModal, setActiveModal] = useState(null);
 
@@ -125,25 +239,20 @@ export default function CreatePropertyAd() {
 
   const bedroomOptions = [
    { value: "", label: "تعداد خواب" },
-   { value: "1", label: "یک خواب" },
-   { value: "2", label: "دو خواب" },
-   { value: "3", label: "سه خواب" },
-   { value: "4", label: "چهار خواب" },
-   { value: "5", label: "پنج خواب" },
-   { value: "6", label: "شش خواب" },
-   { value: "7", label: "هفت خواب" },
+   { value: 1, label: "یک خواب" },
+   { value: 2, label: "دو خواب" },
+   { value: 3, label: "سه خواب" },
+   { value: 4, label: "چهار خواب" },
+   { value: 5, label: "پنج خواب" },
+   { value: 6, label: "شش خواب" },
+   { value: 7, label: "هفت خواب" },
    { value: "studio", label: "استودیو" },
   ];
-
-  const [mapType, setMapType] = useState("");
-  const [unitType, setUnitType] = useState("");
-  const [duration, setDuration] = useState("");
-  const [bedrooms, setBedrooms] = useState("");
 
 return (
   <div
     dir="rtl"
-    className="min-h-screen bg-[#F6F7FB] py-6 px-4"
+    className="min-h-screen bg-[#F6F7FB] py-6 px-4 pb-32 md:pt-30"
   >
     <div className="max-w-4xl mx-auto">
 
@@ -199,7 +308,12 @@ return (
       )}
 
       <SubmitButton
-        onClick={handleSubmit}
+       onClick={handleSubmit}
+       text={
+       editMode
+        ? "ویرایش آگهی"
+        : "ثبت آگهی"
+       }
       />
 
      <SelectionModal

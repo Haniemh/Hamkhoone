@@ -1,10 +1,21 @@
+import { useNavigate } from "react-router-dom";
 import {
   MapPin,
   Users,
   Bath
 } from "lucide-react";
 
+
 export default function RoomCard({ room }) {
+
+  const durationTypeText = 
+  room.duration === "flexible"
+    ? "تمدید قابل انعطاف"
+    : room.duration === "fixed"
+    ? "تمدید ثابت"
+    : room.duration === "yearly"
+    ? "تمدید سالانه"
+    : room.duration
 
   const unitTypeText =
   room.unitType === "apartment"
@@ -51,12 +62,24 @@ const bedroomText =
     ? "هفت خواب"
     : room.bedrooms;
 
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/room-search/${room.id}`, {
+      state: { room }
+    });
+  };
+
   return (
-    <div className="bg-white rounded-4xl overflow-hidden shadow-sm">
+    
+    <div 
+      onClick={handleClick}
+      className="bg-white rounded-4xl overflow-hidden shadow-sm">
+
       <div className="relative h-64">
 
         <img
-          src={room.image}
+          src={room.mainImage}
           alt={room.title}
           className="w-full h-full object-cover"
         />
@@ -146,9 +169,6 @@ const bedroomText =
       </div>
       <div className="p-5">
 
-        <h3 className="font-bold text-lg mb-4">
-          {room.title}
-        </h3>
         <div className="grid grid-cols-2 gap-3">
 
           <div
@@ -237,7 +257,7 @@ const bedroomText =
           <div className="flex items-center gap-3">
 
             <img
-              src={room.ownerImage}
+              src={room.profileImage}
               alt=""
               className="
                 w-12
@@ -250,7 +270,7 @@ const bedroomText =
             <div>
 
               <p className="font-semibold text-sm">
-                {room.owner}
+                {room.fullName}
               </p>
 
               <p className="text-xs text-gray-400 mt-1">
@@ -272,11 +292,7 @@ const bedroomText =
               font-medium
             "
           >
-            {room.duration === "flexible"
-             ? "تمدید قابل انعطاف"
-             : room.duration === "fixed"
-             ? "تمدید ثابت"
-             : "تمدید سالانه"}
+            {durationTypeText}
           </div>
 
         </div>

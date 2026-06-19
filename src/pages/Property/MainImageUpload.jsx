@@ -23,10 +23,14 @@ export default function MainImageUpload({
         "
       >
         {mainImage ? (
-          <img
-            src={URL.createObjectURL(mainImage)}
-            alt=""
-            className="w-full h-full object-cover"
+           <img
+            src={
+              typeof mainImage === "string"
+              ? mainImage
+              : URL.createObjectURL(mainImage)
+            }
+          alt=""
+          className="w-full h-full object-cover"
           />
         ) : (
           <>
