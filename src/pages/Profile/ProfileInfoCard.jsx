@@ -1,6 +1,5 @@
 // src/pages/Profile/ProfileInfoCard.jsx
 import {
-  Bell,
   Camera,
   Pencil,
   X,
@@ -9,19 +8,35 @@ import { useState } from "react";
 
 export default function ProfileInfoCard({ user, setUser }) {
   const [isEditing, setIsEditing] = useState(false);
+  const [usernameError, setUsernameError] = useState("");
+  const [saveError, setSaveError] = useState("");
 
   const saveProfile = async () => {
     try {
-      await fetch("http://localhost:8080/api/profile", {
+      setSaveError("");
+      const response = await fetch("http://localhost:8080/api/profile", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
       });
+
+      if (!response.ok) {
+        const data = await response.json();
+        if (data.message && data.message.includes("username")) {
+          setUsernameError("این نام کاربری قبلاً ثبت شده است");
+          return;
+        }
+        throw new Error("خطا در ذخیره اطلاعات");
+      }
+
       setIsEditing(false);
+      setUsernameError("");
+      setSaveError("");
     } catch (error) {
       console.log(error);
+      setSaveError("خطا در ارتباط با سرور");
     }
   };
 
@@ -82,8 +97,6 @@ export default function ProfileInfoCard({ user, setUser }) {
 
   return (
     <div className="bg-white rounded-[35px] shadow-sm overflow-hidden">
-
-      {/* Avatar */}
       <div className="text-center p-6">
         <div className="relative inline-block">
           <img
@@ -118,21 +131,28 @@ export default function ProfileInfoCard({ user, setUser }) {
           <h1 className="mt-4 text-3xl font-bold">{user.fullName}</h1>
         )}
 
-        {/* username */}
         {isEditing ? (
-          <div className="mt-1 flex items-center justify-center gap-2">
-            <span className="text-gray-400 text-sm">@</span>
-            <input
-              value={user.username || ""}
-              onChange={(e) =>
-                setUser({
-                  ...user,
-                  username: e.target.value,
-                })
-              }
-              placeholder="نام کاربری"
-              className="text-center text-sm text-gray-500 border-2 border-indigo-400 bg-yellow-50 rounded-lg p-1 px-3"
-            />
+          <div className="mt-1 flex flex-col items-center gap-1">
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-gray-400 text-sm">@</span>
+              <input
+                value={user.username || ""}
+                onChange={(e) => {
+                  setUser({
+                    ...user,
+                    username: e.target.value,
+                  });
+                  setUsernameError("");
+                }}
+                placeholder="نام کاربری"
+                className="text-center text-sm text-gray-500 border-2 border-indigo-400 bg-yellow-50 rounded-lg p-1 px-3"
+              />
+            </div>
+            {usernameError && (
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-2 rounded-lg text-sm max-w-md">
+                {usernameError}
+              </div>
+            )}
           </div>
         ) : (
           <p className="text-sm text-gray-400 mt-1">
@@ -178,18 +198,29 @@ export default function ProfileInfoCard({ user, setUser }) {
         </div>
       </div>
 
-      {/* About */}
       <div className="px-5 pb-5">
         <div className="flex justify-between items-center mb-3">
           <h2 className="font-bold text-lg">درباره من</h2>
           <button
-            onClick={() => setIsEditing((prev) => !prev)}
+            onClick={() => {
+              if (isEditing) {
+                saveProfile();
+              } else {
+                setIsEditing(true);
+              }
+            }}
             className="flex items-center gap-1 text-indigo-600 text-sm whitespace-nowrap shrink-0"
           >
             <Pencil size={16} />
             <span>{isEditing ? "ثبت" : "ویرایش"}</span>
           </button>
         </div>
+
+        {saveError && (
+          <div className="mb-3 bg-red-50 border border-red-200 text-red-700 p-3 rounded-xl text-center text-sm">
+            {saveError}
+          </div>
+        )}
 
         <div className="bg-indigo-50 rounded-3xl p-4">
           {isEditing ? (
@@ -208,6 +239,7 @@ export default function ProfileInfoCard({ user, setUser }) {
           )}
         </div>
       </div>
+
       <div className="px-5 pb-5">
         <h2 className="font-bold text-lg mb-3">موقعیت مکانی</h2>
 
@@ -215,30 +247,18 @@ export default function ProfileInfoCard({ user, setUser }) {
           <div className="flex-1">
             <label className="block text-sm text-gray-500 mb-1">شهر</label>
             {isEditing ? (
-              <div className="relative">
-                <select
-                  value={user.city || ""}
-                  onChange={(e) =>
-                    setUser({
-                      ...user,
-                      city: e.target.value,
-                    })
-                  }
-                  className="w-full p-3 border-2 border-indigo-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 bg-yellow-50 text-gray-700 text-base appearance-none"
-                >
-                  <option value="" className="text-gray-400">انتخاب شهر</option>
-                  {cities.map((city) => (
-                    <option key={city} value={city} className="text-gray-700">
-                      {city}
-                    </option>
-                  ))}
-                </select>
-                <div className="absolute left-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                  <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-              </div>
+              <input
+                type="text"
+                value={user.city || ""}
+                onChange={(e) =>
+                  setUser({
+                    ...user,
+                    city: e.target.value,
+                  })
+                }
+                placeholder="شهر مورد نظر را وارد کنید"
+                className="w-full p-3 border-2 border-indigo-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 bg-yellow-50 text-gray-700"
+              />
             ) : (
               <div className="bg-gray-50 rounded-xl p-3 border-2 border-indigo-200">
                 <p className="text-gray-600">{user.city || "تعیین نشده"}</p>
@@ -270,7 +290,6 @@ export default function ProfileInfoCard({ user, setUser }) {
         </div>
       </div>
 
-      {/* Budget */}
       <div className="px-5 pb-5">
         <h2 className="font-bold text-lg mb-3">شرایط مالی</h2>
 
@@ -331,7 +350,6 @@ export default function ProfileInfoCard({ user, setUser }) {
         </div>
       </div>
 
-      {/* Tags */}
       <div className="px-5 pb-6">
         <h2 className="font-bold text-lg mb-3">هشتگ‌ها</h2>
 

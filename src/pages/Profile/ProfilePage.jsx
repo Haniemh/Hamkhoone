@@ -15,8 +15,7 @@ export default function ProfilePage() {
     age: 30,
     profileImage: null,
     haveHouse: false,
-    about:
-      "دانشجوی مهندسی نرم افزار و به دنبال هم‌خانه‌ای منظم و اجتماعی.",
+    about: "دانشجوی مهندسی نرم افزار و به دنبال هم‌خانه‌ای منظم و اجتماعی.",
     rentBudget: "۸ میلیون",
     depositBudget: "۳۰۰ میلیون",
     deadline: "۳۰ روز",
@@ -24,26 +23,27 @@ export default function ProfilePage() {
     neighborhood: "ونک",
     tags: ["برونگرا", "کتابخوان", "ورزشکار", "اجتماعی"],
     psychology: {
-      personality: {
-        title: "ویژگی‌های شخصیتی",
-        result: "برونگرا، مسئولیت‌پذیر و همدل",
+      mbti: {
+        result: "ENTJ",
         completed: true,
+        vectors: {
+          mbti: [0.68, 0.72, 0.65, 0.58, 0.62, 0.70, 0.55, 0.60]
+        }
       },
-      conflictStyle: {
-        title: "سبک حل تعارض",
-        result: null,
+      big5: {
+        result: "EACNO",
         completed: true,
+        vectors: {
+          big5: [0.72, 0.45, 0.88, 0.30, 0.65]
+        }
       },
-      values: {
-        title: "تست ارزش‌ها و مرزها",
-        result: "احترام متقابل، نظم و حفظ حریم شخصی",
+      disc: {
+        result: "DISC",
         completed: true,
-      },
-      lifestyle: {
-        title: "سبک زندگی",
-        result: "فعال، منظم و اجتماعی",
-        completed: true,
-      },
+        vectors: {
+          disc: [0.90, 0.85, 0.50, 0.45]
+        }
+      }
     },
     phoneNumber: null,
     phoneVerified: false,

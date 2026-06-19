@@ -7,164 +7,230 @@ export default function RoommateDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [roommates] = useState([
-    {
-      id: 1,
-      fullName: "زهرا محمدی",
-      username: "zahra_mohammadi",
-      age: 30,
-      gender: "female",
-      profileImage: null,
-      haveHouse: false,
-      about: "دانشجوی مهندسی نرم افزار و به دنبال هم‌خانه‌ای منظم و اجتماعی.",
-      rentBudget: 8000000,
-      depositBudget: 300000000,
-      totalBudget: 308000000,
-      deadline: "۱۴۰۴/۰۱/۱۵",
-      city: "تهران",
-      neighborhood: "ونک",
-      tags: ["برونگرا", "کتابخوان", "ورزشکار", "اجتماعی"],
-      psychology: {
-        personality: { title: "ویژگی‌های شخصیتی", result: "برونگرا، مسئولیت‌پذیر و همدل", completed: true },
-        conflictStyle: { title: "سبک حل تعارض", result: null, completed: true },
-        values: { title: "تست ارزش‌ها و مرزها", result: "احترام متقابل، نظم و حفظ حریم شخصی", completed: true },
-        lifestyle: { title: "سبک زندگی", result: "فعال، منظم و اجتماعی", completed: true },
+const [roommates] = useState([
+  {
+    id: 1,
+    fullName: "زهرا محمدی",
+    username: "zahra_mohammadi",
+    age: 30,
+    gender: "female",
+    profileImage: null,
+    haveHouse: false,
+    about: "دانشجوی مهندسی نرم افزار و به دنبال هم‌خانه‌ای منظم و اجتماعی.",
+    rentBudget: 8000000,
+    depositBudget: 300000000,
+    totalBudget: 308000000,
+    deadline: "۱۴۰۴/۰۱/۱۵",
+    city: "تهران",
+    neighborhood: "ونک",
+    tags: ["برونگرا", "کتابخوان", "ورزشکار", "اجتماعی"],
+    psychology: {
+      mbti: {
+        result: "ENTJ",
+        completed: true,
+        vectors: { mbti: [0.68, 0.72, 0.65, 0.58, 0.62, 0.70, 0.55, 0.60] }
       },
-      phoneVerified: true,
-      emailVerified: false,
-      createdAt: "۱۴۰۳/۱۲/۲۰",
-    },
-    {
-      id: 2,
-      fullName: "مریم کریمی",
-      username: "maryam_karimi",
-      age: 25,
-      gender: "female",
-      profileImage: null,
-      haveHouse: true,
-      about: "برنامه نویس، علاقه‌مند به موسیقی و سینما.",
-      rentBudget: 6000000,
-      depositBudget: 200000000,
-      totalBudget: 206000000,
-      deadline: "۱۴۰۴/۰۱/۲۰",
-      city: "تهران",
-      neighborhood: "پاسداران",
-      tags: ["اجتماعی", "هنری", "مهمانی"],
-      psychology: {
-        personality: { title: "ویژگی‌های شخصیتی", result: "برونگرا، خلاق", completed: true },
-        conflictStyle: { title: "سبک حل تعارض", result: "مذاکره‌کننده", completed: true },
-        values: { title: "تست ارزش‌ها و مرزها", result: "احترام و حریم شخصی", completed: true },
-        lifestyle: { title: "سبک زندگی", result: "شب‌زنده‌دار", completed: true },
+      big5: {
+        result: "EACNO",
+        completed: true,
+        vectors: { big5: [0.72, 0.45, 0.88, 0.30, 0.65] }
       },
-      phoneVerified: true,
-      emailVerified: true,
-      createdAt: "۱۴۰۳/۱۲/۱۸",
+      disc: {
+        result: "DISC",
+        completed: true,
+        vectors: { disc: [0.90, 0.85, 0.50, 0.45] }
+      }
     },
-    {
-      id: 3,
-      fullName: "احمد رضایی",
-      username: "ahmad_rezaei",
-      age: 28,
-      gender: "male",
-      profileImage: null,
-      haveHouse: false,
-      about: "مهندس عمران، دنبال هم‌خانه‌ای ساکت و منظم.",
-      rentBudget: 7000000,
-      depositBudget: 250000000,
-      totalBudget: 257000000,
-      deadline: "۱۴۰۴/۰۲/۰۵",
-      city: "اصفهان",
-      neighborhood: "چهارباغ",
-      tags: ["ساکت", "کتابخوان", "مسئولیت‌پذیر"],
-      psychology: {
-        personality: { title: "ویژگی‌های شخصیتی", result: "درونگرا، منطقی", completed: true },
-        conflictStyle: { title: "سبک حل تعارض", result: "اجتناب", completed: true },
-        values: { title: "تست ارزش‌ها و مرزها", result: "نظم و آرامش", completed: true },
-        lifestyle: { title: "سبک زندگی", result: "کم‌تحرک", completed: true },
+    phoneVerified: true,
+    emailVerified: false,
+    createdAt: "۱۴۰۳/۱۲/۲۰",
+  },
+  {
+    id: 2,
+    fullName: "مریم کریمی",
+    username: "maryam_karimi",
+    age: 25,
+    gender: "female",
+    profileImage: null,
+    haveHouse: true,
+    about: "برنامه نویس، علاقه‌مند به موسیقی و سینما.",
+    rentBudget: 6000000,
+    depositBudget: 200000000,
+    totalBudget: 206000000,
+    deadline: "۱۴۰۴/۰۱/۲۰",
+    city: "تهران",
+    neighborhood: "پاسداران",
+    tags: ["اجتماعی", "هنری", "مهمانی"],
+    psychology: {
+      mbti: {
+        result: "INFP",
+        completed: true,
+        vectors: { mbti: [0.40, 0.60, 0.55, 0.45, 0.70, 0.30, 0.65, 0.35] }
       },
-      phoneVerified: false,
-      emailVerified: true,
-      createdAt: "۱۴۰۳/۱۲/۱۵",
-    },
-    {
-      id: 4,
-      fullName: "سارا حسینی",
-      username: "sara_hosseini",
-      age: 22,
-      gender: "female",
-      profileImage: null,
-      haveHouse: false,
-      about: "دانشجوی پزشکی، نیاز به محیط آرام برای مطالعه.",
-      rentBudget: 5000000,
-      depositBudget: 150000000,
-      totalBudget: 155000000,
-      deadline: "۱۴۰۴/۰۱/۲۵",
-      city: "شیراز",
-      neighborhood: "قصردشت",
-      tags: ["مطالعه‌گر", "ساکت", "سالمند"],
-      psychology: {
-        personality: { title: "ویژگی‌های شخصیتی", result: "درونگرا، منظم", completed: true },
-        conflictStyle: { title: "سبک حل تعارض", result: "همکاری", completed: true },
-        values: { title: "تست ارزش‌ها و مرزها", result: "سکوت و تمرکز", completed: true },
-        lifestyle: { title: "سبک زندگی", result: "کم‌فعالیت", completed: true },
+      big5: {
+        result: "eacno",
+        completed: true,
+        vectors: { big5: [0.35, 0.55, 0.42, 0.60, 0.70] }
       },
-      phoneVerified: true,
-      emailVerified: false,
-      createdAt: "۱۴۰۳/۱۲/۱۰",
+      disc: {
+        result: "disc",
+        completed: true,
+        vectors: { disc: [0.30, 0.70, 0.55, 0.45] }
+      }
     },
-    {
-      id: 5,
-      fullName: "علی نوری",
-      username: "ali_nouri",
-      age: 35,
-      gender: "male",
-      profileImage: null,
-      haveHouse: true,
-      about: "فریلنسر، بیشتر وقت‌ها خونه هستم.",
-      rentBudget: 10000000,
-      depositBudget: 400000000,
-      totalBudget: 410000000,
-      deadline: "۱۴۰۴/۰۱/۱۰",
-      city: "تهران",
-      neighborhood: "جردن",
-      tags: ["اجتماعی", "مهمانی", "ورزشکار"],
-      psychology: {
-        personality: { title: "ویژگی‌های شخصیتی", result: "برونگرا، پرانرژی", completed: true },
-        conflictStyle: { title: "سبک حل تعارض", result: "رقابتی", completed: true },
-        values: { title: "تست ارزش‌ها و مرزها", result: "تفریح و نشاط", completed: true },
-        lifestyle: { title: "سبک زندگی", result: "فعال", completed: true },
+    phoneVerified: true,
+    emailVerified: true,
+    createdAt: "۱۴۰۳/۱۲/۱۸",
+  },
+  {
+    id: 3,
+    fullName: "احمد رضایی",
+    username: "ahmad_rezaei",
+    age: 28,
+    gender: "male",
+    profileImage: null,
+    haveHouse: false,
+    about: "مهندس عمران، دنبال هم‌خانه‌ای ساکت و منظم.",
+    rentBudget: 7000000,
+    depositBudget: 250000000,
+    totalBudget: 257000000,
+    deadline: "۱۴۰۴/۰۲/۰۵",
+    city: "اصفهان",
+    neighborhood: "چهارباغ",
+    tags: ["ساکت", "کتابخوان", "مسئولیت‌پذیر"],
+    psychology: {
+      mbti: {
+        result: "ISTJ",
+        completed: true,
+        vectors: { mbti: [0.35, 0.65, 0.30, 0.70, 0.40, 0.60, 0.30, 0.70] }
       },
-      phoneVerified: true,
-      emailVerified: true,
-      createdAt: "۱۴۰۳/۱۲/۰۵",
-    },
-    {
-      id: 6,
-      fullName: "فاطمه کریمی",
-      username: "fatemeh_karimi",
-      age: 27,
-      gender: "female",
-      profileImage: null,
-      haveHouse: true,
-      about: "معلم ریاضی، خونه دارم دنبال هم‌خانه‌ای مسئولیت‌پذیر.",
-      rentBudget: 4000000,
-      depositBudget: 100000000,
-      totalBudget: 104000000,
-      deadline: "۱۴۰۴/۰۱/۰۵",
-      city: "مشهد",
-      neighborhood: "سجاد",
-      tags: ["مسئولیت‌پذیر", "ساکت", "کتابخوان"],
-      psychology: {
-        personality: { title: "ویژگی‌های شخصیتی", result: "درونگرا، منظم", completed: true },
-        conflictStyle: { title: "سبک حل تعارض", result: "همکاری", completed: true },
-        values: { title: "تست ارزش‌ها و مرزها", result: "نظم و احترام", completed: true },
-        lifestyle: { title: "سبک زندگی", result: "آرام", completed: true },
+      big5: {
+        result: "EACNO",
+        completed: true,
+        vectors: { big5: [0.45, 0.70, 0.80, 0.25, 0.40] }
       },
-      phoneVerified: true,
-      emailVerified: false,
-      createdAt: "۱۴۰۳/۱۲/۰۱",
+      disc: {
+        result: "DISC",
+        completed: true,
+        vectors: { disc: [0.85, 0.40, 0.60, 0.50] }
+      }
     },
-  ]);
+    phoneVerified: false,
+    emailVerified: true,
+    createdAt: "۱۴۰۳/۱۲/۱۵",
+  },
+  {
+    id: 4,
+    fullName: "سارا حسینی",
+    username: "sara_hosseini",
+    age: 22,
+    gender: "female",
+    profileImage: null,
+    haveHouse: false,
+    about: "دانشجوی پزشکی، نیاز به محیط آرام برای مطالعه.",
+    rentBudget: 5000000,
+    depositBudget: 150000000,
+    totalBudget: 155000000,
+    deadline: "۱۴۰۴/۰۱/۲۵",
+    city: "شیراز",
+    neighborhood: "قصردشت",
+    tags: ["مطالعه‌گر", "ساکت", "سالمند"],
+    psychology: {
+      mbti: {
+        result: "ISFJ",
+        completed: true,
+        vectors: { mbti: [0.30, 0.70, 0.40, 0.60, 0.65, 0.35, 0.40, 0.60] }
+      },
+      big5: {
+        result: "eacno",
+        completed: true,
+        vectors: { big5: [0.30, 0.65, 0.55, 0.45, 0.50] }
+      },
+      disc: {
+        result: "disc",
+        completed: true,
+        vectors: { disc: [0.25, 0.45, 0.75, 0.55] }
+      }
+    },
+    phoneVerified: true,
+    emailVerified: false,
+    createdAt: "۱۴۰۳/۱۲/۱۰",
+  },
+  {
+    id: 5,
+    fullName: "علی نوری",
+    username: "ali_nouri",
+    age: 35,
+    gender: "male",
+    profileImage: null,
+    haveHouse: true,
+    about: "فریلنسر، بیشتر وقت‌ها خونه هستم.",
+    rentBudget: 10000000,
+    depositBudget: 400000000,
+    totalBudget: 410000000,
+    deadline: "۱۴۰۴/۰۱/۱۰",
+    city: "تهران",
+    neighborhood: "جردن",
+    tags: ["اجتماعی", "مهمانی", "ورزشکار"],
+    psychology: {
+      mbti: {
+        result: "ENFP",
+        completed: true,
+        vectors: { mbti: [0.75, 0.25, 0.65, 0.35, 0.70, 0.30, 0.60, 0.40] }
+      },
+      big5: {
+        result: "EACNO",
+        completed: true,
+        vectors: { big5: [0.80, 0.50, 0.60, 0.35, 0.75] }
+      },
+      disc: {
+        result: "DISC",
+        completed: true,
+        vectors: { disc: [0.85, 0.75, 0.40, 0.50] }
+      }
+    },
+    phoneVerified: true,
+    emailVerified: true,
+    createdAt: "۱۴۰۳/۱۲/۰۵",
+  },
+  {
+    id: 6,
+    fullName: "فاطمه کریمی",
+    username: "fatemeh_karimi",
+    age: 27,
+    gender: "female",
+    profileImage: null,
+    haveHouse: true,
+    about: "معلم ریاضی، خونه دارم دنبال هم‌خانه‌ای مسئولیت‌پذیر.",
+    rentBudget: 4000000,
+    depositBudget: 100000000,
+    totalBudget: 104000000,
+    deadline: "۱۴۰۴/۰۱/۰۵",
+    city: "مشهد",
+    neighborhood: "سجاد",
+    tags: ["مسئولیت‌پذیر", "ساکت", "کتابخوان"],
+    psychology: {
+      mbti: {
+        result: "ESTJ",
+        completed: true,
+        vectors: { mbti: [0.70, 0.30, 0.55, 0.45, 0.40, 0.60, 0.65, 0.35] }
+      },
+      big5: {
+        result: "EACNO",
+        completed: true,
+        vectors: { big5: [0.65, 0.70, 0.85, 0.30, 0.45] }
+      },
+      disc: {
+        result: "DISC",
+        completed: true,
+        vectors: { disc: [0.80, 0.50, 0.60, 0.70] }
+      }
+    },
+    phoneVerified: true,
+    emailVerified: false,
+    createdAt: "۱۴۰۳/۱۲/۰۱",
+  },
+]);
 
   const roommate = roommates.find((r) => r.id === parseInt(id));
 

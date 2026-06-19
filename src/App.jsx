@@ -9,8 +9,8 @@ import ArchivePage from "./pages/Profile/ArchivePage/ArchivePage";
 import Chats from "./pages/Chat/ChatPage";
 import RequestPage from "./pages/Request/RequestPage";
 import RoommateSearchPage from "./pages/RoommateSearch/RoommateSearchPage";
+import RoommateDetailPage from "./pages/RoommateSearch/RoommateDetailPage";
 import RoomSearchPage from "./pages/RoomSearch/RoomSearchPage";
-import CreatePropertAd from "./pages/Property/CreatePropertyPage";
 
 function App() {
   return (
@@ -24,9 +24,9 @@ function App() {
         <Route path="/archive" element={<ArchivePage />} />
         <Route path="/Chats" element={<Chats />} />
         <Route path="/request" element={<RequestPage />} />
-        <Route path="/RoommateSearch" element={<RoommateSearchPage />} />
-        <Route path="/RoomSearch" element={<RoomSearchPage />} />
-        <Route path="/create-property" element={<CreatePropertAd />} />
+        <Route path="/roommate-search" element={<RoommateSearchPage />} />
+        <Route path="/roommate-search/:id" element={<RoommateDetailPage />} />
+        <Route path="/room-search" element={<RoomSearchPage />} />
       </Routes>
     </BrowserRouter>
   );
