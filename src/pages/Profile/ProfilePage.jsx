@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import ProfileInfoCard from "./ProfileInfoCard";
 import HousingSection from "./HousingSection";
 import BadgesSection from "./BadgesSection";
@@ -190,13 +189,17 @@ export default function ProfilePage() {
           </div>
         )}
 
-        <ProfileInfoCard user={user} setUser={setUser} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="lg:mt-20 space-y-6">
+            <ProfileInfoCard user={user} setUser={setUser} />
+          </div>
 
-        <HousingSection user={user} />
-
-        <BadgesSection user={user} setUser={setUser} />
-
-        <PsychologySection user={user} setUser={setUser} />
+          <div className="space-y-6">
+            <HousingSection user={user} />
+            <BadgesSection user={user} setUser={setUser} />
+            <PsychologySection user={user} setUser={setUser} />
+          </div>
+        </div>
       </div>
 
       <BottomNav />

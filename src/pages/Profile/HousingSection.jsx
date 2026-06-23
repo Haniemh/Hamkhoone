@@ -173,7 +173,7 @@ export default function HousingSection({ user }) {
       </div>
 
       <div className="mt-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <button
             onClick={() => navigate("/my-rooms")}
             className="bg-gray-50 rounded-3xl p-5 flex items-center gap-4 hover:bg-indigo-50"
