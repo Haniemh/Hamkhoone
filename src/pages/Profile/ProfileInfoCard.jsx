@@ -5,6 +5,30 @@ import {
   X,
 } from "lucide-react";
 import { useState } from "react";
+import { updateProfile } from "../../lib/api";
+
+function normalizeNumber(value) {
+  const persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+  const arabicDigits = "٠١٢٣٤٥٦٧٨٩";
+  const normalized = String(value ?? "")
+    .replace(/[۰-۹]/g, (digit) => persianDigits.indexOf(digit))
+    .replace(/[٠-٩]/g, (digit) => arabicDigits.indexOf(digit))
+    .replace(/,/g, ".")
+    .replace(/[^\d.]/g, "");
+
+  return normalized || null;
+}
+
+function mapUserToProfilePayload(user) {
+  return {
+    name: user.fullName || "",
+    picture: user.profileImage || "",
+    gender: user.gender || "female",
+    bio: user.about || "",
+    budget_min: normalizeNumber(user.rentBudget),
+    budget_max: normalizeNumber(user.depositBudget),
+  };
+}
 
 export default function ProfileInfoCard({ user, setUser }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -14,23 +38,17 @@ export default function ProfileInfoCard({ user, setUser }) {
   const saveProfile = async () => {
     try {
       setSaveError("");
-      const response = await fetch("http://localhost:8080/api/profile", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
+      const profile = await updateProfile(mapUserToProfilePayload(user));
+
+      setUser({
+        ...user,
+        fullName: profile.name || user.fullName,
+        gender: profile.gender || user.gender,
+        about: profile.bio ?? user.about,
+        rentBudget: profile.budget_min ?? user.rentBudget,
+        depositBudget: profile.budget_max ?? user.depositBudget,
+        profileImage: profile.picture || user.profileImage,
       });
-
-      if (!response.ok) {
-        const data = await response.json();
-        if (data.message && data.message.includes("username")) {
-          setUsernameError("این نام کاربری قبلاً ثبت شده است");
-          return;
-        }
-        throw new Error("خطا در ذخیره اطلاعات");
-      }
-
       setIsEditing(false);
       setUsernameError("");
       setSaveError("");

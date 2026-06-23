@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
+import { signup, updateProfile } from "../../lib/api";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -17,7 +18,9 @@ export default function SignUp() {
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleRegister = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleRegister = async () => {
     setMessage("");
 
     if (!fullName.trim()) {
@@ -64,12 +67,22 @@ export default function SignUp() {
       return;
     }
 
-    setIsSuccess(true);
-    setMessage("ثبت نام با موفقیت انجام شد");
+    try {
+      setIsLoading(true);
+      await signup({ username: email.trim(), password });
+      await updateProfile({ name: fullName.trim() });
+      setIsSuccess(true);
+      setMessage("ثبت نام با موفقیت انجام شد");
 
-    setTimeout(() => {
-      navigate("/");
-    }, 800);
+      setTimeout(() => {
+        navigate("/profile");
+      }, 800);
+    } catch (error) {
+      setIsSuccess(false);
+      setMessage(error instanceof Error ? error.message : "ثبت نام ناموفق بود");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -167,9 +180,10 @@ export default function SignUp() {
 
         <button
           onClick={handleRegister}
-          className="w-full mt-8 bg-green-600 hover:bg-green-700 text-white py-4 rounded-full text-xl"
+          disabled={isLoading}
+          className="w-full mt-8 bg-green-600 hover:bg-green-700 disabled:bg-green-300 text-white py-4 rounded-full text-xl"
         >
-          ثبت نام
+          {isLoading ? "در حال ثبت نام..." : "ثبت نام"}
         </button>
 
         <div className="text-center mt-6">

@@ -18,13 +18,13 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/11" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />    
         <Route path="/my-rooms" element={<MyRoomsPage />} />
         <Route path="/favorite-rooms" element={<FavoriteRoomsPage />} />
         <Route path="/archive" element={<ArchivePage />} />
-        <Route path="/Chats" element={<Chats />} />
+        <Route path="/" element={<Chats />} />
         <Route path="/request" element={<RequestPage />} />
         <Route path="/roommate-search" element={<RoommateSearchPage />} />
         <Route path="/roommate-search/:id" element={<RoommateDetailPage />} />
